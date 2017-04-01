@@ -18,8 +18,6 @@ SOURCES += src/SailfishPodcast.cpp
 
 OTHER_FILES += qml/SailfishPodcast.qml \
     qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/SailfishPodcast.changes.in \
     rpm/SailfishPodcast.spec \
     rpm/SailfishPodcast.yaml \
@@ -37,3 +35,6 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/SailfishPodcast-de.ts
+
+DISTFILES += \
+    qml/pages/StationPage.qml

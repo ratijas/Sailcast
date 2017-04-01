@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1">
 <context>
     <name>CoverPage</name>
     <message>
@@ -9,28 +9,17 @@
     </message>
 </context>
 <context>
-    <name>FirstPage</name>
+    <name>StationPage</name>
     <message>
-        <source>Show Page 2</source>
+        <source>30 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>UI Template</source>
+        <source>Радио-Т</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Hello Sailors</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SecondPage</name>
-    <message>
-        <source>Nested Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item</source>
+        <source> Еженедельные импровизации на хай–тек темы Еженедельные импровизации на хай–тек темы</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
