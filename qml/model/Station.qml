@@ -23,7 +23,7 @@ Item {
         _request = new XMLHttpRequest();
         _request.onreadystatechange = _readyStateChangeHandler;
         _request.onerror = _errorHandler;
-        _request.timeout = 10;
+        _request.timeout = 60;
         _request.open("GET", feed_url);
         _request.send();
     }
