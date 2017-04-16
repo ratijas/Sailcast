@@ -37,4 +37,10 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/SailfishPodcast-de.ts
 
 DISTFILES += \
-    qml/pages/StationPage.qml
+    qml/pages/StationPage.qml \
+    qml/model/Station.qml \
+    qml/service/Dao.qml \
+    qml/pages/MyStationsPage.qml \
+    qml/model/MyStationsListModel.qml \
+    qml/service/qmldir \
+    qml/view/StationListElement.qml
