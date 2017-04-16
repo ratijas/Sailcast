@@ -39,7 +39,7 @@ Item {
 
                 _xmlModel.xml = _request.responseText;
             } else {
-                status = Component.Error;
+                _errorHandler()
             }
         }
     }
