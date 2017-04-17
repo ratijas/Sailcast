@@ -31,15 +31,13 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
+import "model"
 import "service"
 
 ApplicationWindow
 {
-    initialPage: Component { StationPage { } }
+    initialPage: Component { MyStationsPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
-    Dao {
-        id: myDao
-    }
 }
 
