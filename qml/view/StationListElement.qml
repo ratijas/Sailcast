@@ -79,7 +79,7 @@ BackgroundItem {
             BusyIndicator {
                 size: BusyIndicatorSize.Medium
                 anchors.centerIn: cover
-                running: element.state === "coverLoading"
+                running: coverImage.status === Image.Loading
             }
         }
 
