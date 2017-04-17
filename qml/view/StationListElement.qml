@@ -98,6 +98,16 @@ BackgroundItem {
             elide: Text.ElideRight
         }
 
+        Text {
+            id: episodesCount
+
+            width: 100
+
+            text: model.episodesCount
+
+            color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
+        }
+
         /*
         Image {
             Layout.minimumWidth: Theme.iconSizeMedium

@@ -32,6 +32,7 @@ ListModel {
                        description: station.description,
                        cover:       station.cover.toString(),
                        feed_url:    station.feed_url,
+                       episodesCount: station.episodes.length,
                    });
         }
     }
