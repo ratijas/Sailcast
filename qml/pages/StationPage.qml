@@ -33,7 +33,12 @@ import Sailfish.Silica 1.0
 import QtMultimedia 5.0
 
 Page {
-    //property string podcastUrl:"http://n5.radio-t.com/rtfiles/rt_podcast539.mp3"
+    property var station
+
+    Component.onCompleted: {
+        console.log("StationPage: pushed.")
+    }
+
     id: page
     MediaPlayer {
 
