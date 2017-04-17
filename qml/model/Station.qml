@@ -1,12 +1,14 @@
 import QtQuick 2.0
 import QtQuick.XmlListModel 2.0
-import QtWebKit 3.0
 
 Item {
     property string title
     property string description
     property url cover : ""
     property url feed_url
+    property var episodes : []
+    property bool _stationLoaded: false
+    property bool _episodesLoaded: false
 
     property var _request
 
@@ -19,6 +21,8 @@ Item {
 
     function reload() {
         status = Component.Loading;
+        _stationLoaded = false;
+        _episodesLoaded = false;
 
         _request = new XMLHttpRequest();
         _request.onreadystatechange = _readyStateChangeHandler;
@@ -37,7 +41,8 @@ Item {
 
                 console.log("Station: actually, status = DONE");
 
-                _xmlModel.xml = _request.responseText;
+                _stationModel.xml = _request.responseText;
+                _episodesModel.xml = _request.responseText;
             } else {
                 _errorHandler()
             }
@@ -45,11 +50,11 @@ Item {
     }
 
     XmlListModel {
-        id:  _xmlModel
+        id:  _stationModel
         onStatusChanged: {
-            if (_xmlModel.status === XmlListModel.Ready) {
-                _extract();
-            } else if (_xmlModel.status === XmlListModel.Error) {
+            if (_stationModel.status === XmlListModel.Ready) {
+                _extractStation();
+            } else if (_stationModel.status === XmlListModel.Error) {
                 _errorHandler();
             }
         }
@@ -72,18 +77,81 @@ Item {
         }
     }
 
-    function _extract() {
-        if (_xmlModel.count === 1) {
-            var model = _xmlModel.get(0);
+    XmlListModel {
+        id:  _episodesModel
+
+        onStatusChanged: {
+            if (_episodesModel.status === XmlListModel.Ready) {
+                _extractEpisodes();
+            } else if (_episodesModel.status === XmlListModel.Error) {
+                _errorHandler();
+            }
+        }
+
+        query: "/rss/channel/item"
+
+        XmlRole {
+            name: "title"
+            query: "title/string()"
+        }
+
+        XmlRole {
+            name: "description"
+            query: "description/string()"
+        }
+
+        XmlRole {
+            name: "cover"
+            query: "*[name()='itunes:image']/@href/string()"
+        }
+    }
+
+    function _extractStation() {
+        if (_stationModel.count === 1) {
+            var model = _stationModel.get(0);
 
             title = model.title;
             description = model.description;
             cover = model.cover;
 
-            status = Component.Ready;
+            _stationLoaded = true;
+            _checkStatusReady();
 
         } else {
             _errorHandler();
+        }
+    }
+
+    function _extractEpisodes() {
+        if (_episodesModel.count !== 0) {
+            episodes = []
+            for (var i = 0; i < _episodesModel.count; i++) {
+                var episodeModel = _episodesModel.get(i);
+
+                episodes.push(_extractEpisode(episodeModel));
+            }
+            _episodesLoaded = true;
+            _checkStatusReady();
+        } else {
+            _errorHandler();
+        }
+        console.log("_extractEpisodes: extracted total " + episodes.length + " episodes");
+    }
+
+    function _extractEpisode(model) {
+        // FIXME: move to Episode module
+        var episode = {};
+
+        episode.title = model.title;
+        episode.description = model.description;
+        episode.cover = model.cover;
+
+        return episode;
+    }
+
+    function _checkStatusReady() {
+        if (_stationLoaded && _episodesLoaded) {
+            status = Component.Ready;
         }
     }
 
