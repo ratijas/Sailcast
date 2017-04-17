@@ -2,11 +2,13 @@ import QtQuick 2.0
 import QtQuick.XmlListModel 2.0
 
 Item {
+    id: root
+
     property string title
     property string description
-    property url cover : ""
+    property url cover
     property url feed_url
-    property var episodes : []
+    property var episodes: []
     property bool _stationLoaded: false
     property bool _episodesLoaded: false
 
@@ -104,6 +106,16 @@ Item {
             name: "cover"
             query: "*[name()='itunes:image']/@href/string()"
         }
+
+        XmlRole {
+            name: "enclosure"
+            query: "enclosure/@url/string()"
+        }
+
+        XmlRole {
+            name: "pubDate"
+            query: "pubDate/string()"
+        }
     }
 
     function _extractStation() {
@@ -139,14 +151,32 @@ Item {
     }
 
     function _extractEpisode(model) {
-        // FIXME: move to Episode module
-        var episode = {};
-
-        episode.title = model.title;
-        episode.description = model.description;
-        episode.cover = model.cover;
-
+        var episode = episodeFromRawParts(
+                    model.title,
+                    model.description,
+                    model.cover,
+                    model.enclosure,
+                    model.pubDate
+                    );
         return episode;
+    }
+
+    Component {
+        id: _episodeComponent
+        Episode {}
+    }
+
+    function episodeFromRawParts(title, description, cover, enclosure, pubDate) {
+        console.log("Dao: creating episode from raw parts");
+        return _episodeComponent.createObject(root,
+                                              {
+                                                  station: root,
+                                                  title: title,
+                                                  description: description,
+                                                  cover: cover,
+                                                  enclosure: enclosure,
+                                                  pubDate: pubDate,
+                                              });
     }
 
     function _checkStatusReady() {
