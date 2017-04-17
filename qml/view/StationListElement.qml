@@ -10,7 +10,7 @@ BackgroundItem {
 
     RowLayout {
         anchors.fill: parent
-        spacing: Theme.paddingLarge
+        spacing: Theme.paddingMedium
 
         Item {
             id: cover
