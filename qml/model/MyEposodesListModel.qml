@@ -11,8 +11,9 @@ ListModel {
 
     function refresh() {
         for (var i = 0; i < currentStation.episodes.length; i++) {
-            currenStation.statusChanged.connect(updateModel);
+            currentStation.statusChanged.connect(updateModel);
         }
+        updateModel();
 
     }
 

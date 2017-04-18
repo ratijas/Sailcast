@@ -39,7 +39,9 @@ Page {
     id: stationPage
     SilicaListView {
         id: listView
-        model: MyEposodesListModel.createObject(root, {currentStation: station});
+        model: MyEposodesListModel {
+            currentStation: station
+        }
 
 //        model: MyEposodesListModel {
 //           id: episodes
