@@ -10,7 +10,7 @@ BackgroundItem {
 
     RowLayout {
         anchors.fill: parent
-        spacing: Theme.paddingLarge
+        spacing: Theme.paddingMedium
 
         Item {
             id: cover
@@ -24,6 +24,10 @@ BackgroundItem {
                 State {
                     name: "coverLoading"
                     when: coverImage.status === Image.Loading
+                    PropertyChanges {
+                        target: coverImage
+                        opacity: 0
+                    }
                 },
                 State {
                     name: "coverReady"
@@ -45,8 +49,19 @@ BackgroundItem {
 
             transitions: Transition {
                 NumberAnimation {
-                    targets: [coverImage, coverDefault]
+                    targets: [coverImage]
                     property: "opacity"
+                    from: 0
+                    to: 1
+                    duration: 2000
+                    easing.type: Easing.InOutQuad
+                }
+
+                NumberAnimation {
+                    targets: [coverDefault]
+                    property: "opacity"
+                    from: 1
+                    to: 0
                     duration: 2000
                     easing.type: Easing.InOutQuad
                 }
@@ -59,7 +74,7 @@ BackgroundItem {
 
                 source: model.cover
 
-                opacity: 0
+                opacity: 1
             }
 
             // in case station's cover can not be loaded
@@ -83,7 +98,7 @@ BackgroundItem {
             }
         }
 
-        Text {
+        Label {
             id: title
 
             Layout.fillWidth: true
