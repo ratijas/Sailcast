@@ -26,4 +26,15 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>StationPage</name>
+    <message>
+        <source>Subscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

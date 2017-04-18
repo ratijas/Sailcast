@@ -34,6 +34,7 @@ import Sailfish.Silica 1.0
 import QtMultimedia 5.0
 import "../model"
 import "../view"
+import "../service"
 
 Page {
     property var station
@@ -75,10 +76,8 @@ Page {
             ColumnLayout {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-
                 Label {
                     Layout.fillWidth: true
-
                     text: station.title
                     font.pixelSize: Theme.fontSizeLarge
                     color: Theme.primaryColor
@@ -86,21 +85,41 @@ Page {
                     wrapMode: Text.WordWrap
                 }
 
-//                Label {
-//                    // Layout.fillHeight: false
-//                    Layout.fillWidth: true
+                //                Label {
+                //                    // Layout.fillHeight: false
+                //                    Layout.fillWidth: true
 
-//                    text: station.description
-//                    font.pixelSize: Theme.fontSizeSmall
-//                    color: Theme.secondaryColor
+                //                    text: station.description
+                //                    font.pixelSize: Theme.fontSizeSmall
+                //                    color: Theme.secondaryColor
 
-//                    wrapMode: TextEdit.WordWrap
-//                    truncationMode: TruncationMode.Elide
-//                }
+                //                    wrapMode: TextEdit.WordWrap
+                //                    truncationMode: TruncationMode.Elide
+                //                }
                 Button {
-                    id:btnSubscribe
-                    text:Dao.isSubscribed(station.enclosure) ? "Unsubscribe" : "Subscribe"
+                    text:"Subscribe"
+                    property bool _flag: true
+                    function updateText(flag) {
+                        _flag = flag;
+                        text = _flag
+                                ? qsTr("Unsubscribe")
+                                : qsTr("Subscribe");
+                    }
+                    Component.onCompleted: {
+                        Dao.subscription.connect(function(url, flag) {
+                            if (url === page.station.feed_url.toString()) {
+                                updateText(flag);
+                            }
+                        });
+                        Dao.isSubscribed(
+                                    page.station.feed_url.toString(),
+                                    function (flag) {
+                                        updateText(flag);
+                                    });
+                    }
+
                 }
+
             }
         }
 
