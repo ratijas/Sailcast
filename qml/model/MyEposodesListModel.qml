@@ -34,7 +34,7 @@ ListModel {
                        station: episode.station,
                        title: episode.title,
                        description: episode.description,
-                       cover: episode.cover,
+                       cover: episode.cover.toString(),
                        enclosure: episode.enclosure,
                        pubDate: episode.pubDate
                    });
