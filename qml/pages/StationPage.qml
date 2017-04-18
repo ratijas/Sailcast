@@ -30,7 +30,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
+import QtMultimedia 5.0
 import "../model"
 import "../view"
 
@@ -43,10 +43,10 @@ Page {
             currentStation: station
         }
 
-//        model: MyEposodesListModel {
-//           id: episodes
-//           currentStation:station
-//        }
+        //        model: MyEposodesListModel {
+        //           id: episodes
+        //           currentStation:station
+        //        }
         y:350
         height: parent.height-200
         width: parent.width
@@ -54,30 +54,29 @@ Page {
         delegate: Component {
             EpisodeListElement  {
                 id: episodeDelegate
- //               onClicked: {
-                    //console.log("i am clicked: " + model.title);
-                    //var page = stationPage.createObject(root, {station: stations.stations[index]});
-                    //pageStack.push(page);
-//                    if (player.playbackState === MediaPlayer.PlayingState) {
-//                                               player.pause();
-//                                           } else {
-//                                               player.source=url
-//                                               player.play();
-//                                           }
- //               }
+                onClicked: {
+                    console.log("i am clicked: " + model.title);
+
+                    if (player.playbackState === MediaPlayer.PlayingState) {
+                        player.pause();
+                    } else {
+                        player.source=model.feed_url
+                        player.play();
+                    }
+                }
             }
 
         }
         VerticalScrollDecorator {}
     }
-//    Component {
-//        StationHeader{
-//            id:stationHeader
-//            Component.onCompleted: {
-//                console.log("StationHeader: pushed.")
-//            }
-//        }
-//    }
+    //    Component {
+    //        StationHeader{
+    //            id:stationHeader
+    //            Component.onCompleted: {
+    //                console.log("StationHeader: pushed.")
+    //            }
+    //        }
+    //    }
     Row{
         x: Theme.paddingLarge
         y: Theme.paddingLarge
