@@ -85,41 +85,29 @@ Page {
                     wrapMode: Text.WordWrap
                 }
 
-                //                Label {
-                //                    // Layout.fillHeight: false
-                //                    Layout.fillWidth: true
-
-                //                    text: station.description
-                //                    font.pixelSize: Theme.fontSizeSmall
-                //                    color: Theme.secondaryColor
-
-                //                    wrapMode: TextEdit.WordWrap
-                //                    truncationMode: TruncationMode.Elide
-                //                }
                 Button {
-                    text:"Subscribe"
                     property bool _flag: true
+
+                    text: qsTr("Subscribe")
+
                     function updateText(flag) {
                         _flag = flag;
                         text = _flag
                                 ? qsTr("Unsubscribe")
                                 : qsTr("Subscribe");
                     }
+
                     Component.onCompleted: {
                         Dao.subscription.connect(function(url, flag) {
-                            if (url === page.station.feed_url.toString()) {
+                            if (url === station.feed_url.toString()) {
                                 updateText(flag);
                             }
                         });
-                        Dao.isSubscribed(
-                                    page.station.feed_url.toString(),
-                                    function (flag) {
-                                        updateText(flag);
-                                    });
+                        Dao.isSubscribed(station.feed_url.toString(), function (flag) {
+                            updateText(flag);
+                        });
                     }
-
                 }
-
             }
         }
 
