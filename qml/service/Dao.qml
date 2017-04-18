@@ -9,6 +9,15 @@ Item {
     property var database
 
 
+    /**
+     * This signal is fired whenever user subscribes to or unsubscribes from a station.
+     *
+     * This signal contains unique `feed_url` of a Station for which an action was performed;
+     * and boolean flag `subscribed` which is set to `true` when if the user have just
+     * subscribed to a Station and `false` otherwise.
+     *
+     * This should be used in conjunction with asynchronous method `isSubscribed`.
+     */
     signal subscription(string feed_url, bool subscribed)
 
 
@@ -28,7 +37,7 @@ Item {
                         INTO subscriptions(feed_url, position)
                         VALUES(?, ?)
                 ", [url, id]);
-                subscribtion(url, true);
+                subscription(url, true);
             }
             mock("http://feeds.rucast.net/radio-t", 1);
             mock("http://feeds.feedburner.com/razbor-podcast", 2);
@@ -78,7 +87,7 @@ Item {
                 VALUES(?)
             ", [feed_url]);
         });
-        subscribtion(feed_url, true);
+        subscription(feed_url, true);
     }
 
     /**
@@ -91,7 +100,7 @@ Item {
                 DELETE FROM subscriptions
                 WHERE feed_url = ?
             ", [feed_url]);
-            subscribtion(feed_url, false);
+            subscription(feed_url, false);
         });
     }
 
