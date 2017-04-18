@@ -107,21 +107,5 @@ BackgroundItem {
 
             color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
         }
-
-        /*
-        Image {
-            Layout.minimumWidth: Theme.iconSizeMedium
-            Layout.preferredWidth: Theme.iconSizeMedium
-            Layout.maximumWidth: Theme.iconSizeMedium
-            Layout.minimumHeight: Theme.iconSizeMedium
-            Layout.preferredHeight: Theme.iconSizeMedium
-            Layout.maximumHeight: Theme.iconSizeMedium
-
-            source: ("image://theme/icon-m-right?" +
-                     (element.highlighted
-                      ? Theme.highlightColor
-                      : Theme.primaryColor))
-        }
-        */
     }
 }

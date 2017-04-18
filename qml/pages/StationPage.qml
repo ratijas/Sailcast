@@ -56,13 +56,14 @@ Page {
                 id: episodeDelegate
                 onClicked: {
                     console.log("i am clicked: " + model.title);
-
+                    console.log("url: " + model.enclosure.toString());
                     if (player.playbackState === MediaPlayer.PlayingState) {
                         player.pause();
                     } else {
-                        player.source=model.feed_url
+                        player.source = model.enclosure.toString()
                         player.play();
                     }
+                    console.log("player's status: " + player.playbackState.toString());
                 }
             }
 
