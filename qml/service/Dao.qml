@@ -8,6 +8,8 @@ Item {
     property string dbName: "SailcastDatabase"
     property var database
 
+    signal subscribtion(string feed_url, bool subscribed)
+
     Component.onCompleted: {
         database = LocalStorage.openDatabaseSync(dbName, "1.0");
         database.transaction(function(tx) {
@@ -24,6 +26,7 @@ Item {
                         INTO subscriptions(feed_url, position)
                         VALUES(?, ?)
                 ", [url, id]);
+                subscribtion(url, true);
             }
             mock("http://feeds.rucast.net/radio-t", 1);
             mock("http://feeds.feedburner.com/razbor-podcast", 2);
@@ -73,6 +76,7 @@ Item {
                 VALUES(?)
             ", [feed_url]);
         });
+        subscribtion(feed_url, true);
     }
 
     /**
@@ -85,6 +89,7 @@ Item {
                 DELETE FROM subscriptions
                 WHERE feed_url = ?
             ", [feed_url]);
+            subscribtion(feed_url, false);
         });
     }
 
