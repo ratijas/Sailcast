@@ -86,17 +86,17 @@ Page {
                     wrapMode: Text.WordWrap
                 }
 
-                Label {
-                    // Layout.fillHeight: false
-                    Layout.fillWidth: true
+//                Label {
+//                    // Layout.fillHeight: false
+//                    Layout.fillWidth: true
 
-                    text: station.description
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.secondaryColor
+//                    text: station.description
+//                    font.pixelSize: Theme.fontSizeSmall
+//                    color: Theme.secondaryColor
 
-                    wrapMode: TextEdit.WordWrap
-                    truncationMode: TruncationMode.Elide
-                }
+//                    wrapMode: TextEdit.WordWrap
+//                    truncationMode: TruncationMode.Elide
+//                }
             }
         }
 
