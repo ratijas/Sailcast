@@ -29,6 +29,7 @@
 */
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Sailfish.Silica 1.0
 import QtMultimedia 5.0
 import "../model"
@@ -36,78 +37,108 @@ import "../view"
 
 Page {
     property var station
-    id: stationPage
-    SilicaListView {
-        id: listView
-        model: MyEposodesListModel {
-            currentStation: station
+
+    id: page
+
+    anchors.fill: parent
+
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        // header
+        RowLayout {
+            property alias station: page.station
+
+            id: header
+
+            Layout.fillWidth: true
+            Layout.preferredHeight: 200
+            Layout.maximumHeight: 200
+            Layout.minimumHeight: 200
+
+            spacing: Theme.paddingLarge
+
+            Image {
+                id: stationCover
+
+                Layout.fillHeight: true
+                Layout.maximumWidth: parent.height
+                Layout.preferredWidth: parent.height
+
+                fillMode: Image.PreserveAspectFit
+
+                source: header.station.cover
+            }
+
+            ColumnLayout {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+
+                Label {
+                    Layout.fillWidth: true
+
+                    text: station.title
+                    font.pixelSize: Theme.fontSizeLarge
+                    color: Theme.primaryColor
+
+                    wrapMode: Text.WordWrap
+                }
+
+                Label {
+                    // Layout.fillHeight: false
+                    Layout.fillWidth: true
+
+                    text: station.description
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.secondaryColor
+
+                    wrapMode: TextEdit.WordWrap
+                    truncationMode: TruncationMode.Elide
+                }
+            }
         }
 
-        //        model: MyEposodesListModel {
-        //           id: episodes
-        //           currentStation:station
-        //        }
-        y:350
-        height: parent.height-200
-        width: parent.width
+        SilicaListView {
+            id: listView
 
-        delegate: Component {
-            EpisodeListElement  {
-                id: episodeDelegate
-                onClicked: {
-                    console.log("i am clicked: " + model.title);
+            Layout.fillHeight: true
+            Layout.fillWidth: true
 
-                    if (player.playbackState === MediaPlayer.PlayingState) {
-                        player.pause();
-                    } else {
-                        player.source=model.feed_url
-                        player.play();
+            clip: true
+
+            model: MyEposodesListModel {
+                currentStation: page.station
+            }
+
+            delegate: Component {
+                EpisodeListElement  {
+                    id: episodeDelegate
+                    onClicked: {
+                        console.log("i am clicked: " + model.title);
+
+                        var myUrl = Qt.resolvedUrl(model.enclosure);
+                        console.log("myUrl: " + myUrl);
+                        console.log("player source: " + player.source);
+                        if (player.source.toString() === myUrl.toString()) {
+                            console.log("same url");
+                            if (player.playbackState === MediaPlayer.PlayingState) {
+                                player.pause();
+                                console.log("paused");
+                            } else {
+                                player.play();
+                                console.log("play")
+                            }
+                        } else {
+                            console.log("loading track: " + model.enclosure);
+                            player.source = model.enclosure;
+                            player.seek(0);
+                            player.play();
+                        }
                     }
                 }
             }
-
-        }
-        VerticalScrollDecorator {}
-    }
-    //    Component {
-    //        StationHeader{
-    //            id:stationHeader
-    //            Component.onCompleted: {
-    //                console.log("StationHeader: pushed.")
-    //            }
-    //        }
-    //    }
-    Row{
-        x: Theme.paddingLarge
-        y: Theme.paddingLarge
-        height: 200
-        width: parent.width
-        Image {
-            id:stationCover
-            source: station.cover
-            width: parent.height
-            height:parent.height
-        }
-        Column{
-            height:parent.height
-            width: parent.width-stationCover.width-2*Theme.paddingLarge
-            Label {
-                id:stationLabel
-                x: Theme.horizontalPageMargin
-                text: station.title
-                font.pixelSize: Theme.fontSizeLarge
-                color: Theme.primaryColor
-            }
-            TextArea {
-                text: station.description
-                color: Theme.primaryColor
-                width: parent.width
-                height:parent.height
-                readOnly:true
-                font.pixelSize: Theme.fontSizeSmall
-                wrapMode: TextEdit.WordWrap
-            }
+            VerticalScrollDecorator {}
         }
     }
-
 }
