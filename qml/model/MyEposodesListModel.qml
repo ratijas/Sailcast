@@ -26,7 +26,7 @@ ListModel {
                        title: episode.title,
                        description: episode.description,
                        cover: episode.cover.toString(),
-                       enclosure: episode.enclosure,
+                       enclosure: episode.enclosure.toString(),
                        pubDate: episode.pubDate
                    });
         }
