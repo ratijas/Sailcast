@@ -8,7 +8,9 @@ Item {
     property string dbName: "SailcastDatabase"
     property var database
 
+
     signal subscription(string feed_url, bool subscribed)
+
 
     Component.onCompleted: {
         database = LocalStorage.openDatabaseSync(dbName, "1.0");
