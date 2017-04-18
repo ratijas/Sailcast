@@ -47,4 +47,10 @@ DISTFILES += \
     qml/model/Episode.qml \
     qml/view/EpisodeListElement.qml \
     qml/view/StationHeader.qml \
-    qml/model/MyEposodesListModel.qml
+    qml/model/MyEposodesListModel.qml \
+    icons/108x108/SailfishPodcast.png \
+    icons/128x128/SailfishPodcast.png \
+    icons/256x256/SailfishPodcast.png \
+    icons/86x86/SailfishPodcast.png \
+    meta/database.md \
+    meta/schema.sql
