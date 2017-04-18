@@ -3,7 +3,6 @@ import "../service"
 
 ListModel {
     property var currentStation
-    property var episodes: []
 
     Component.onCompleted: {
         refresh();
@@ -14,7 +13,6 @@ ListModel {
             currentStation.statusChanged.connect(updateModel);
         }
         updateModel();
-
     }
 
     function updateModel() {
@@ -24,17 +22,10 @@ ListModel {
         for (var i = 0; i < currentStation.episodes.length; i++) {
             var episode = currentStation.episodes[i];
             append({
-                       //status:      station.status,
-//                       title:       station.title,
-//                       description: station.description,
-//                       cover:       station.cover.toString(),
-//                       feed_url:    station.feed_url,
-//                       episodesCount: station.episodes.length,
-
                        station: episode.station,
                        title: episode.title,
                        description: episode.description,
-                       cover: episode.cover,
+                       cover: episode.cover.toString(),
                        enclosure: episode.enclosure,
                        pubDate: episode.pubDate
                    });
