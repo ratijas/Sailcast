@@ -30,68 +30,52 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtMultimedia 5.0
+
+import "../model"
+import "../view"
 
 Page {
     property var station
-
-    Component.onCompleted: {
-        console.log("StationPage: pushed.")
-    }
-
-    id: page
-    MediaPlayer {
-
-        id: player
-        //source: podcastUrl
-
-    }
-
-
+    id: stationPage
     SilicaListView {
         id: listView
-        model: podcastModel
+        model: MyEposodesListModel.createObject(root, {currentStation: station});
+
+//        model: MyEposodesListModel {
+//           id: episodes
+//           currentStation:station
+//        }
         y:350
         height: parent.height-200
         width: parent.width
 
-        delegate: BackgroundItem {
-            id: delegate
-            Item{
-                width:listView.width
-                height: 150
-                Column{
-                    anchors.left:parent.left
-                    anchors.leftMargin: Theme.paddingLarge
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    Label {
-                        text: qsTr(title)
-                        color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    }
-                    Label {
-                        text: qsTr("30 minutes")
-                        font.pixelSize: Theme.fontSizeSmall/2
-                        color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    }
-                }
-                IconButton{
-                    anchors.right: parent.right
-                    anchors.rightMargin: Theme.paddingLarge
-                    anchors.verticalCenter: parent.verticalCenter
-                    icon.source: "image://theme/icon-m-" + (pressed ? "pause" : "play")
-                    onClicked: if (player.playbackState == MediaPlayer.PlayingState) {
-                                   player.pause();
-                               } else {
-                                   player.source=url
-                                   player.play();
-                               }
-                }
+        delegate: Component {
+            EpisodeListElement  {
+                id: episodeDelegate
+ //               onClicked: {
+                    //console.log("i am clicked: " + model.title);
+                    //var page = stationPage.createObject(root, {station: stations.stations[index]});
+                    //pageStack.push(page);
+//                    if (player.playbackState === MediaPlayer.PlayingState) {
+//                                               player.pause();
+//                                           } else {
+//                                               player.source=url
+//                                               player.play();
+//                                           }
+ //               }
             }
 
         }
         VerticalScrollDecorator {}
     }
+//    Component {
+//        StationHeader{
+//            id:stationHeader
+//            Component.onCompleted: {
+//                console.log("StationHeader: pushed.")
+//            }
+//        }
+//    }
     Row{
         x: Theme.paddingLarge
         y: Theme.paddingLarge
@@ -99,25 +83,23 @@ Page {
         width: parent.width
         Image {
             id:stationCover
-            source: "http://www.radio-t.com/images/cover.jpg"
+            source: station.cover
             width: parent.height
             height:parent.height
         }
         Column{
             height:parent.height
             width: parent.width-stationCover.width-2*Theme.paddingLarge
-            //width: 400
             Label {
                 id:stationLabel
                 x: Theme.horizontalPageMargin
-                text: qsTr("Радио-Т")
+                text: station.title
                 font.pixelSize: Theme.fontSizeLarge
                 color: Theme.primaryColor
             }
             TextArea {
-                text: qsTr(" Еженедельные импровизации на хай–тек темы Еженедельные импровизации на хай–тек темы")
+                text: station.description
                 color: Theme.primaryColor
-                //width: parent.width-station.width- 3*Theme.horizontalPageMargin
                 width: parent.width
                 height:parent.height
                 readOnly:true
@@ -126,4 +108,5 @@ Page {
             }
         }
     }
+
 }

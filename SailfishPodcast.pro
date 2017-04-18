@@ -44,4 +44,7 @@ DISTFILES += \
     qml/model/MyStationsListModel.qml \
     qml/service/qmldir \
     qml/view/StationListElement.qml \
-    qml/model/Episode.qml
+    qml/model/Episode.qml \
+    qml/view/EpisodeListElement.qml \
+    qml/view/StationHeader.qml \
+    qml/model/MyEposodesListModel.qml

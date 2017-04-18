@@ -9,11 +9,7 @@
     </message>
 </context>
 <context>
-    <name>StationPage</name>
-    <message>
-        <source>30 minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
+    <name>StationHeader</name>
     <message>
         <source>Радио-Т</source>
         <translation type="unfinished"></translation>
