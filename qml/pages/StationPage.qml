@@ -97,6 +97,10 @@ Page {
 //                    wrapMode: TextEdit.WordWrap
 //                    truncationMode: TruncationMode.Elide
 //                }
+                Button {
+                    id:btnSubscribe
+                    text:Dao.isSubscribed(station.enclosure) ? "Unsubscribe" : "Subscribe"
+                }
             }
         }
 
