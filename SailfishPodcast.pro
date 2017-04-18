@@ -41,6 +41,7 @@ DISTFILES += \
     qml/model/Station.qml \
     qml/service/Dao.qml \
     qml/pages/MyStationsPage.qml \
+    qml/pages/SearchPage.qml \
     qml/model/MyStationsListModel.qml \
     qml/service/qmldir \
     qml/view/StationListElement.qml \

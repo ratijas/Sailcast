@@ -9,6 +9,13 @@
     </message>
 </context>
 <context>
+    <name>MyStationsPage</name>
+    <message>
+        <source>Search / Add RSS</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StationHeader</name>
     <message>
         <source>Радио-Т</source>

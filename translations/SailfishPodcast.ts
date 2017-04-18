@@ -5,6 +5,13 @@
     <name>CoverPage</name>
     <message>
         <source>My Cover</source>
+        <translation>Mein Cover</translation>
+    </message>
+</context>
+<context>
+    <name>MyStationsPage</name>
+    <message>
+        <source>Search / Add RSS</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
