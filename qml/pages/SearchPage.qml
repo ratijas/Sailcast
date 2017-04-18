@@ -7,14 +7,28 @@ import "../model"
 Page {
     id: page
 
+    Dialog {
+        id: addByRssUrlDialog
+        DialogHeader {
+            acceptText: "Add"
+        }
+        TextField {
+            id: urlText
+            anchors.centerIn: parent
+            width: parent.width - Theme.paddingSmall
+            label: "RSS url"
+            placeholderText: label
+        }
+        onAccepted: {
+            Dao.subscribe(urlText.text)
+        }
+    }
+
     SilicaListView {
         id: view
 
         anchors.fill: parent
 
-        Component.onCompleted: {
-            view.headerItem.focus
-        }
 
         header: SearchField {
             width: parent.width
@@ -50,5 +64,13 @@ Page {
             }
         }
         delegate: StationListElement {}
+    }
+
+    Button {
+        id: addByRssUrlBtn
+        visible: listModel.count < 1
+        anchors.centerIn: page
+        text:"Add by RSS url"
+        onClicked: pageStack.push(addByRssUrlDialog)
     }
 }
