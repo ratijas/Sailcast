@@ -56,9 +56,7 @@ BackgroundItem {
                 id: coverImage
                 fillMode: Image.PreserveAspectCrop
                 anchors.fill: cover
-
                 source: model.cover
-
                 opacity: 0
             }
 
@@ -72,7 +70,6 @@ BackgroundItem {
                          (element.highlighted
                           ? Theme.highlightColor
                           : Theme.primaryColor))
-
                 opacity: 0
             }
 
@@ -85,30 +82,15 @@ BackgroundItem {
 
         Text {
             id: title
-
             Layout.fillWidth: true
             Layout.fillHeight: true
-
             text: model.title ? model.title : "Loading..."
-
             color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: Theme.fontSizeLarge
             elide: Text.ElideRight
         }
-
-        Text {
-            id: episodesCount
-
-            width: 100
-
-            text: model.episodesCount
-
-            color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
-        }
-
-        /*
         Image {
             Layout.minimumWidth: Theme.iconSizeMedium
             Layout.preferredWidth: Theme.iconSizeMedium
@@ -116,12 +98,9 @@ BackgroundItem {
             Layout.minimumHeight: Theme.iconSizeMedium
             Layout.preferredHeight: Theme.iconSizeMedium
             Layout.maximumHeight: Theme.iconSizeMedium
-
-            source: ("image://theme/icon-m-right?" +
-                     (element.highlighted
-                      ? Theme.highlightColor
-                      : Theme.primaryColor))
+            source: ("image://theme/icon-l-" +
+                     (element.highlighted ? "pause" : "play"))
         }
-        */
+
     }
 }

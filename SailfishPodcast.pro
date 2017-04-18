@@ -53,4 +53,5 @@ DISTFILES += \
     icons/256x256/SailfishPodcast.png \
     icons/86x86/SailfishPodcast.png \
     meta/database.md \
-    meta/schema.sql
+    meta/schema.sql \
+    rpm/SailfishPodcast.spec.2883
