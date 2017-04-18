@@ -76,13 +76,28 @@ Page {
             ColumnLayout {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                // only avaible starting with QtQuick.Layouts 1.3
+                // Layout.margins: Theme.paddingLarge
+                // Layout.topMargin: Theme.paddingMedium
+                // Layout.bottomMargin: Theme.paddingMedium
+
+                spacing: Theme.paddingMedium
+
+                /* for spacing */
+                Item { Layout.fillWidth: true; Layout.preferredHeight: 0 }
+
                 Label {
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
+
                     text: station.title
-                    font.pixelSize: Theme.fontSizeLarge
+
+                    verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: Theme.fontSizeMedium
                     color: Theme.primaryColor
 
                     wrapMode: Text.WordWrap
+                    truncationMode: TruncationMode.Elide
                 }
 
                 Button {
@@ -120,6 +135,9 @@ Page {
                         }
                     }
                 }
+
+                /* for spacing */
+                Item { Layout.fillWidth: true; Layout.preferredHeight: 0 }
             }
         }
 
