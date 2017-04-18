@@ -5,8 +5,13 @@ ListModel {
 
     property var stations: []
 
+    id: model
+
     Component.onCompleted: {
         refresh();
+        Dao.subscription.connect(function(url, flag) {
+            model.refresh();
+        });
     }
 
     function refresh() {

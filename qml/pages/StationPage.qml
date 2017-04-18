@@ -86,6 +86,9 @@ Page {
                 }
 
                 Button {
+                    /**
+                     * using preudocode: `isSubscribed(station) implies _flag`.
+                     */
                     property bool _flag: true
 
                     text: qsTr("Subscribe")
@@ -106,6 +109,15 @@ Page {
                         Dao.isSubscribed(station.feed_url.toString(), function (flag) {
                             updateText(flag);
                         });
+                    }
+
+                    onClicked: {
+                        var url = station.feed_url.toString();
+                        if (_flag) {
+                            Dao.unsubscribe(url);
+                        } else {
+                            Dao.subscribe(url);
+                        }
                     }
                 }
             }
