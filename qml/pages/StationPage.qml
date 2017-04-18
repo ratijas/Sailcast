@@ -39,7 +39,6 @@ import "../service"
 Page {
     property var station
 
-
     id: page
 
     anchors.fill: parent
@@ -48,97 +47,8 @@ Page {
         anchors.fill: parent
         spacing: 0
 
-        // header
-        RowLayout {
-            property alias station: page.station
-
-            id: header
-
-            Layout.fillWidth: true
-            Layout.preferredHeight: 200
-            Layout.maximumHeight: 200
-            Layout.minimumHeight: 200
-
-            spacing: Theme.paddingLarge
-
-            Image {
-                id: stationCover
-
-                Layout.fillHeight: true
-                Layout.maximumWidth: parent.height
-                Layout.preferredWidth: parent.height
-
-                fillMode: Image.PreserveAspectFit
-
-                source: header.station.cover
-            }
-
-            ColumnLayout {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                // only avaible starting with QtQuick.Layouts 1.3
-                // Layout.margins: Theme.paddingLarge
-                // Layout.topMargin: Theme.paddingMedium
-                // Layout.bottomMargin: Theme.paddingMedium
-
-                spacing: Theme.paddingMedium
-
-                /* for spacing */
-                Item { Layout.fillWidth: true; Layout.preferredHeight: 0 }
-
-                Label {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    text: station.title
-
-                    verticalAlignment: Text.AlignVCenter
-                    font.pixelSize: Theme.fontSizeMedium
-                    color: Theme.primaryColor
-
-                    wrapMode: Text.WordWrap
-                    truncationMode: TruncationMode.Elide
-                }
-
-                Button {
-                    /**
-                     * using preudocode: `isSubscribed(station) implies _flag`.
-                     */
-                    property bool _flag: true
-
-                    text: qsTr("Subscribe")
-
-                    function updateText(flag) {
-                        _flag = flag;
-                        text = _flag
-                                ? qsTr("Unsubscribe")
-                                : qsTr("Subscribe");
-                    }
-
-                    Component.onCompleted: {
-                        Dao.subscription.connect(function(url, flag) {
-                            if (url === station.feed_url.toString()) {
-                                updateText(flag);
-                            }
-                        });
-                        Dao.isSubscribed(station.feed_url.toString(), function (flag) {
-                            updateText(flag);
-                        });
-                    }
-
-                    onClicked: {
-                        var url = station.feed_url.toString();
-                        if (_flag) {
-                            Dao.unsubscribe(url);
-                        } else {
-                            Dao.subscribe(url);
-                        }
-                    }
-                }
-
-                /* for spacing */
-                Item { Layout.fillWidth: true; Layout.preferredHeight: 0 }
-            }
+        StationHeader {
+            station:  page.station
         }
 
         SilicaListView {

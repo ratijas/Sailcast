@@ -18,17 +18,6 @@
 <context>
     <name>StationHeader</name>
     <message>
-        <source>Радио-Т</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Еженедельные импровизации на хай–тек темы Еженедельные импровизации на хай–тек темы</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>StationPage</name>
-    <message>
         <source>Subscribe</source>
         <translation type="unfinished"></translation>
     </message>

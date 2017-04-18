@@ -1,39 +1,96 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Sailfish.Silica 1.0
+import "../service"
 
-Item {
-    Row{
-        x: Theme.paddingLarge
-        y: Theme.paddingLarge
-        height: 200
-        width: parent.width
-        Image {
-            id:stationCover
-            source: "http://www.radio-t.com/images/cover.jpg"
-            width: parent.height
-            height:parent.height
+RowLayout {
+    property var station
+
+    id: header
+
+    Layout.fillWidth: true
+    Layout.preferredHeight: 200
+    Layout.maximumHeight: 200
+    Layout.minimumHeight: 200
+
+    spacing: Theme.paddingLarge
+
+    Image {
+        id: stationCover
+
+        Layout.fillHeight: true
+        Layout.maximumWidth: parent.height
+        Layout.preferredWidth: parent.height
+
+        fillMode: Image.PreserveAspectFit
+
+        source: header.station.cover
+    }
+
+    ColumnLayout {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        // only avaible starting with QtQuick.Layouts 1.3
+        // Layout.margins: Theme.paddingLarge
+        // Layout.topMargin: Theme.paddingMedium
+        // Layout.bottomMargin: Theme.paddingMedium
+
+        spacing: Theme.paddingMedium
+
+        /* for spacing */
+        Item { Layout.fillWidth: true; Layout.preferredHeight: 0 }
+
+        Label {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            text: station.title
+
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: Theme.fontSizeMedium
+            color: Theme.primaryColor
+
+            wrapMode: Text.WordWrap
+            truncationMode: TruncationMode.Elide
         }
-        Column{
-            height:parent.height
-            width: parent.width-stationCover.width-2*Theme.paddingLarge
-            //width: 400
-            Label {
-                id:stationLabel
-                x: Theme.horizontalPageMargin
-                text: qsTr("Радио-Т")
-                font.pixelSize: Theme.fontSizeLarge
-                color: Theme.primaryColor
+
+        Button {
+            /**
+             * using preudocode: `isSubscribed(station) implies _flag`.
+             */
+            property bool _flag: true
+
+            text: qsTr("Subscribe")
+
+            function updateText(flag) {
+                _flag = flag;
+                text = _flag
+                        ? qsTr("Unsubscribe")
+                        : qsTr("Subscribe");
             }
-            TextArea {
-                text: qsTr(" Еженедельные импровизации на хай–тек темы Еженедельные импровизации на хай–тек темы")
-                color: Theme.primaryColor
-                //width: parent.width-station.width- 3*Theme.horizontalPageMargin
-                width: parent.width
-                height:parent.height
-                readOnly:true
-                font.pixelSize: Theme.fontSizeSmall
-                wrapMode: TextEdit.WordWrap
+
+            Component.onCompleted: {
+                Dao.subscription.connect(function(url, flag) {
+                    if (url === station.feed_url.toString()) {
+                        updateText(flag);
+                    }
+                });
+                Dao.isSubscribed(station.feed_url.toString(), function (flag) {
+                    updateText(flag);
+                });
+            }
+
+            onClicked: {
+                var url = station.feed_url.toString();
+                if (_flag) {
+                    Dao.unsubscribe(url);
+                } else {
+                    Dao.subscribe(url);
+                }
             }
         }
+
+        /* for spacing */
+        Item { Layout.fillWidth: true; Layout.preferredHeight: 0 }
     }
 }
