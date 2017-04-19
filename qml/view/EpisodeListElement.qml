@@ -10,7 +10,7 @@ BackgroundItem {
 
     RowLayout {
         anchors.fill: parent
-        spacing: Theme.paddingLarge
+        spacing: Theme.paddingMedium
 
         Item {
             id: cover
@@ -74,22 +74,25 @@ BackgroundItem {
             }
 
             BusyIndicator {
-                size: BusyIndicatorSize.Medium
+                size: BusyIndicatorSize.Small
                 anchors.centerIn: cover
                 running: coverImage.status === Image.Loading
             }
         }
 
-        Text {
+        Label {
             id: title
+
             Layout.fillWidth: true
             Layout.fillHeight: true
+
             text: model.title ? model.title : "Loading..."
+
             color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
-            font.pixelSize: Theme.fontSizeLarge
-            elide: Text.ElideRight
+            font.pixelSize: Theme.fontSizeMedium
+            truncationMode: TruncationMode.Elide
         }
         Image {
             Layout.minimumWidth: Theme.iconSizeMedium
