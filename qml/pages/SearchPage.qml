@@ -26,13 +26,17 @@ Page {
         model: MyStationsListModel {
             id: listModel
 
+            property var displayedStations: []
+
             function updateModel() {
                 clear();
+                displayedStations = [];
                 var searchField = view.headerItem;
                 for (var i = 0; i < stations.length; i++) {
                     var station = stations[i];
                     if (searchField.text === "" || stations[i].title.indexOf(searchField.text) >= 0) {
                         console.log("updateModel: station = " + station);
+                        displayedStations.push(station);
                         append({
                                    status:      station.status,
                                    title:       station.title,
@@ -43,6 +47,10 @@ Page {
                                });
                     }
                 }
+            }
+
+            function getStation(index) {
+                return displayedStations[index];
             }
         }
     }
