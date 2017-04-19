@@ -7,14 +7,10 @@ import "../model"
 Page {
     id: page
 
-    SilicaListView {
+    StationsListView {
         id: view
 
         anchors.fill: parent
-
-        Component.onCompleted: {
-            view.headerItem.focus
-        }
 
         header: SearchField {
             width: parent.width
@@ -49,6 +45,5 @@ Page {
                 }
             }
         }
-        delegate: StationListElement {}
     }
 }

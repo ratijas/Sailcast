@@ -8,11 +8,6 @@ Page {
     id: root
 
     Component {
-        id: stationPage
-        StationPage {}
-    }
-
-    Component {
         id: searchPage
         SearchPage {}
     }
@@ -21,26 +16,9 @@ Page {
         anchors.fill: parent
         spacing: 0
 
-        SilicaListView {
-            id: view
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-
-            model: MyStationsListModel {
-                id: stations
-            }
-
-            delegate: Component {
-                StationListElement {
-                    id: delegate
-                    onClicked: {
-                        console.log("i am clicked: " + model.title);
-                        var page = stationPage.createObject(root, {station: stations.stations[index]});
-                        pageStack.push(page);
-                    }
-                }
-            }
-            VerticalScrollDecorator {}
+        StationsListView {
+            id: subscriptionsListView
+            model: MyStationsListModel {}
         }
 
         BackgroundItem {

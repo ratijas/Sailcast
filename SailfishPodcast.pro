@@ -55,4 +55,5 @@ DISTFILES += \
     icons/86x86/SailfishPodcast.png \
     meta/database.md \
     meta/schema.sql \
-    rpm/SailfishPodcast.spec.2883
+    rpm/SailfishPodcast.spec \
+    qml/view/StationsListView.qml

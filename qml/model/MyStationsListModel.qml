@@ -41,4 +41,11 @@ ListModel {
                    });
         }
     }
+
+    /**
+     * implementation of `StationsListModelInterface`.
+     */
+    function getStation(index) {
+        return stations[index];
+    }
 }
