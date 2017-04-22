@@ -18,6 +18,11 @@ Page {
 
         StationsListView {
             id: subscriptionsListView
+
+            header: PageHeader {
+                title: qsTr("Subscriptions")
+            }
+
             model: MyStationsListModel {}
         }
 

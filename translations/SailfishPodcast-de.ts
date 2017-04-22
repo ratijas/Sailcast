@@ -14,6 +14,17 @@
         <source>Search / Add RSS</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Subscriptions</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchPage</name>
+    <message>
+        <source>RSS url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StationHeader</name>
