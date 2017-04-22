@@ -34,6 +34,7 @@ import Sailfish.Silica 1.0
 import QtMultimedia 5.0
 import "../model"
 import "../view"
+import "../service"
 
 Page {
     property var station
@@ -46,57 +47,8 @@ Page {
         anchors.fill: parent
         spacing: 0
 
-        // header
-        RowLayout {
-            property alias station: page.station
-
-            id: header
-
-            Layout.fillWidth: true
-            Layout.preferredHeight: 200
-            Layout.maximumHeight: 200
-            Layout.minimumHeight: 200
-
-            spacing: Theme.paddingLarge
-
-            Image {
-                id: stationCover
-
-                Layout.fillHeight: true
-                Layout.maximumWidth: parent.height
-                Layout.preferredWidth: parent.height
-
-                fillMode: Image.PreserveAspectFit
-
-                source: header.station.cover
-            }
-
-            ColumnLayout {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-
-                Label {
-                    Layout.fillWidth: true
-
-                    text: station.title
-                    font.pixelSize: Theme.fontSizeLarge
-                    color: Theme.primaryColor
-
-                    wrapMode: Text.WordWrap
-                }
-
-                Label {
-                    // Layout.fillHeight: false
-                    Layout.fillWidth: true
-
-                    text: station.description
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.secondaryColor
-
-                    wrapMode: TextEdit.WordWrap
-                    truncationMode: TruncationMode.Elide
-                }
-            }
+        StationHeader {
+            station:  page.station
         }
 
         SilicaListView {

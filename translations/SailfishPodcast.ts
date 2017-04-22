@@ -9,17 +9,6 @@
     </message>
 </context>
 <context>
-    <name>StationHeader</name>
-    <message>
-        <source>Радио-Т</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> Еженедельные импровизации на хай–тек темы Еженедельные импровизации на хай–тек темы</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MyStationsPage</name>
     <message>
         <source>Search / Add RSS</source>
@@ -27,9 +16,13 @@
     </message>
 </context>
 <context>
-    <name>StationPage</name>
+    <name>StationHeader</name>
     <message>
-        <source>30 minutes</source>
+        <source>Subscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unsubscribe</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
