@@ -167,7 +167,6 @@ Item {
     }
 
     function episodeFromRawParts(title, description, cover, enclosure, pubDate) {
-        console.log("Dao: creating episode from raw parts");
         return _episodeComponent.createObject(root,
                                               {
                                                   station: root,
