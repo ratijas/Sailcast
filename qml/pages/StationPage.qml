@@ -108,7 +108,7 @@ Page {
             clip: true
 
             model: MyEposodesListModel {
-                currentStation: page.station
+                station: page.station
             }
 
             delegate: Component {
