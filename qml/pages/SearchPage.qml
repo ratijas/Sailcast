@@ -5,7 +5,12 @@ import "../service"
 import "../model"
 
 Page {
-    id: page
+    id: root
+
+    Component {
+        id: stationPage
+        StationPage {}
+    }
 
     Dialog {
         id: addByRssUrlDialog
@@ -14,13 +19,22 @@ Page {
         }
         TextField {
             id: urlText
-            anchors.centerIn: parent
-            width: parent.width - Theme.paddingSmall
-            label: "RSS url"
+
+            anchors {
+                centerIn: parent
+                leftMargin: Theme.horizontalPageMargin
+                right: Theme.horizontalPageMargin
+            }
+            width: parent.width
+
+            label: qsTr("RSS url")
             placeholderText: label
+
+            text: "http://feeds.rucast.net/radio-t" // TODO: remove this
         }
         onAccepted: {
-            Dao.subscribe(urlText.text)
+            var page = stationPage.createObject(root, {station: Dao.stationFromUrl(urlText.text)});
+            pageStack.push(page);
         }
     }
 
@@ -69,7 +83,7 @@ Page {
     Button {
         id: addByRssUrlBtn
         visible: listModel.count < 1
-        anchors.centerIn: page
+        anchors.centerIn: root
         text:"Add by RSS url"
         onClicked: pageStack.push(addByRssUrlDialog)
     }
