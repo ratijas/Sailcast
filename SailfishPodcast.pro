@@ -58,4 +58,6 @@ DISTFILES += \
     qml/pages/SubscriptionsPage.qml \
     qml/model/StationsListModel.qml \
     qml/view/EpisodesListView.qml \
-    qml/model/EpisodesListModel.qml
+    qml/model/EpisodesListModel.qml \
+    qml/model/SearchResult.qml \
+    qml/service/ITunes.qml

@@ -7,6 +7,12 @@ import "../model"
 Page {
     id: root
 
+    onStatusChanged: {
+        if (status === PageStatus.Active) {
+            view.headerItem.forceActiveFocus();
+        }
+    }
+
     Dialog {
         id: addByRssUrlDialog
 
@@ -51,9 +57,10 @@ Page {
 
             placeholderText: qsTr("Search iTunes Store")
 
-            onTextChanged: {
-                var query = text.trim();
+            EnterKey.onClicked: {
+                focus = false;
 
+                var query = text.trim();
                 if (query === "") return;
 
                 // do request to iTunes Store
@@ -65,7 +72,13 @@ Page {
                     // refresh page
                     listModel.updateModel();
                 };
-                Dao.subscriptions(callback);
+                ITunes.search(query, callback);
+            }
+
+            onTextChanged: {
+                if (text === "") {
+                    listModel.clear();
+                }
             }
         }
 
