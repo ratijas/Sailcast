@@ -5,6 +5,7 @@ ListModel {
     property var station
 
     Component.onCompleted: {
+        stationChanged.connect(refresh);
         refresh();
     }
 

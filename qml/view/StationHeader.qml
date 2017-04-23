@@ -61,6 +61,7 @@ RowLayout {
             property bool _flag: true
 
             text: qsTr("Subscribe")
+            enabled: station.status !== Component.Error
 
             function updateText(flag) {
                 _flag = flag;
@@ -75,6 +76,13 @@ RowLayout {
                         updateText(flag);
                     }
                 });
+                header.stationChanged.connect(function() {
+                    update();
+                });
+                update();
+            }
+
+            function update() {
                 Dao.isSubscribed(station.feed_url.toString(), function (flag) {
                     updateText(flag);
                 });

@@ -135,4 +135,11 @@ Item {
         console.log("Dao: creating station from url: " + feed_url);
         return _stationComponent.createObject(null, {feed_url: feed_url});
     }
+
+    /**
+     * Create empty `Station` object without any data.
+     */
+    function emptyStation() {
+        return _stationComponent.createObject(null);
+    }
 }

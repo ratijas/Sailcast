@@ -22,6 +22,8 @@ Item {
     }
 
     function reload() {
+        if (!feed_url) return;
+
         status = Component.Loading;
         _stationLoaded = false;
         _episodesLoaded = false;
