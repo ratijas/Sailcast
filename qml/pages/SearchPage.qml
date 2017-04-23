@@ -7,13 +7,11 @@ import "../model"
 Page {
     id: root
 
-    Component {
-        id: stationPage
-        StationPage {}
-    }
-
     Dialog {
         id: addByRssUrlDialog
+
+        canAccept: Qt.resolvedUrl(urlText.text).indexOf("http") === 0
+
         DialogHeader {
             acceptText: "Add"
         }
@@ -32,9 +30,14 @@ Page {
 
             text: "http://feeds.rucast.net/radio-t" // TODO: remove this
         }
-        onAccepted: {
-            var page = stationPage.createObject(root, {station: Dao.stationFromUrl(urlText.text)});
-            pageStack.push(page);
+
+        acceptDestination: Component {
+            StationPage {
+                station: Dao.emptyStation()
+            }
+        }
+        onAcceptPendingChanged: {
+            acceptDestinationInstance.station = Dao.stationFromUrl(urlText.text);
         }
     }
 
