@@ -90,11 +90,14 @@ Page {
         }
     }
 
-    Button {
-        id: addByRssUrlBtn
-        visible: listModel.count < 1
-        anchors.centerIn: root
-        text:"Add by RSS url"
-        onClicked: pageStack.push(addByRssUrlDialog)
+    ViewPlaceholder {
+        enabled: listModel.count < 1
+        Button {
+            id: addByRssUrlBtn
+            anchors.centerIn: parent
+            text:"Add by RSS url"
+            onClicked: pageStack.push(addByRssUrlDialog)
+        }
     }
+
 }
