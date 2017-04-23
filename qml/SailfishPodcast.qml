@@ -37,7 +37,7 @@ import "service"
 
 ApplicationWindow
 {
-    initialPage: Component { MyStationsPage { } }
+    initialPage: Component { SubscriptionsPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
     MediaPlayer {

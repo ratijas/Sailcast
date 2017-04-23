@@ -8,10 +8,7 @@ import "../pages"
  * General StationsListView spans as much space as it could get with `Layout.fill{Height,Width}`
  * and uses `StationListElement` as its `delegate`, while leaving `model` undefined.
  *
- * A `model` must implement the following interface:
- * @interface StationsListModelInterface {
- *     Station getStation(int index)
- * }
+ * A `model` must be a sub-component of StationsListModel.
  *
  * Check `StationListElement`'s documentation for the delegate's expectactions about the model.
  */
@@ -30,7 +27,7 @@ SilicaListView {
         StationListElement {
             onClicked: {
                 console.log("i am clicked: " + model.title);
-                var page = stationPage.createObject(view, {station: view.model.getStation(index)});
+                var page = stationPage.createObject(view, {station: view.model.stations[index]});
                 pageStack.push(page);
             }
         }

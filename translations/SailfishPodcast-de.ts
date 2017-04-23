@@ -9,20 +9,13 @@
     </message>
 </context>
 <context>
-    <name>MyStationsPage</name>
-    <message>
-        <source>Search / Add RSS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subscriptions</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>SearchPage</name>
     <message>
         <source>RSS url</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search iTunes Store</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -34,6 +27,17 @@
     </message>
     <message>
         <source>Unsubscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SubscriptionsPage</name>
+    <message>
+        <source>Subscriptions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search / Add RSS</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

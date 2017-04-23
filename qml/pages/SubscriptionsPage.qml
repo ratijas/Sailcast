@@ -23,7 +23,7 @@ Page {
                 title: qsTr("Subscriptions")
             }
 
-            model: MyStationsListModel {}
+            model: SubscriptionsListModel {}
         }
 
         BackgroundItem {

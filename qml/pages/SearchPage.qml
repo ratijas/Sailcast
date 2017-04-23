@@ -21,14 +21,14 @@ Page {
             anchors {
                 centerIn: parent
                 leftMargin: Theme.horizontalPageMargin
-                right: Theme.horizontalPageMargin
+                rightMargin: Theme.horizontalPageMargin
             }
             width: parent.width
 
             label: qsTr("RSS url")
             placeholderText: label
 
-            text: "http://feeds.rucast.net/radio-t" // TODO: remove this
+            text: "http://devzen.ru/feed/" // TODO: remove this
         }
 
         acceptDestination: Component {
@@ -48,44 +48,32 @@ Page {
 
         header: SearchField {
             width: parent.width
-            placeholderText: "Search iTunes Store"
+
+            placeholderText: qsTr("Search iTunes Store")
+
             onTextChanged: {
-                listModel.updateModel();
+                var query = text.trim();
+
+                if (query === "") return;
+
+                // do request to iTunes Store
+                // pass callback
+                var callback = function(results) {
+                    // parse results
+                    // push parsed results into list model
+                    listModel.stations = results;
+                    // refresh page
+                    listModel.updateModel();
+                };
+                Dao.subscriptions(callback);
             }
         }
 
         // prevent newly added list delegates from stealing focus away from the search field
         currentIndex: -1
 
-        model: MyStationsListModel {
+        model: StationsListModel {
             id: listModel
-
-            property var displayedStations: []
-
-            function updateModel() {
-                clear();
-                displayedStations = [];
-                var searchField = view.headerItem;
-                for (var i = 0; i < stations.length; i++) {
-                    var station = stations[i];
-                    if (searchField.text === "" || stations[i].title.indexOf(searchField.text) >= 0) {
-                        console.log("updateModel: station = " + station);
-                        displayedStations.push(station);
-                        append({
-                                   status:      station.status,
-                                   title:       station.title,
-                                   description: station.description,
-                                   cover:       station.cover.toString(),
-                                   feed_url:    station.feed_url,
-                                   episodesCount: station.episodes.length,
-                               });
-                    }
-                }
-            }
-
-            function getStation(index) {
-                return displayedStations[index];
-            }
         }
     }
 

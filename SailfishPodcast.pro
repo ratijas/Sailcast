@@ -40,15 +40,12 @@ DISTFILES += \
     qml/pages/StationPage.qml \
     qml/model/Station.qml \
     qml/service/Dao.qml \
-    qml/pages/MyStationsPage.qml \
     qml/pages/SearchPage.qml \
-    qml/model/MyStationsListModel.qml \
     qml/service/qmldir \
     qml/view/StationListElement.qml \
     qml/model/Episode.qml \
     qml/view/EpisodeListElement.qml \
     qml/view/StationHeader.qml \
-    qml/model/MyEposodesListModel.qml \
     icons/108x108/SailfishPodcast.png \
     icons/128x128/SailfishPodcast.png \
     icons/256x256/SailfishPodcast.png \
@@ -56,4 +53,9 @@ DISTFILES += \
     meta/database.md \
     meta/schema.sql \
     rpm/SailfishPodcast.spec \
-    qml/view/StationsListView.qml
+    qml/view/StationsListView.qml \
+    qml/model/SubscriptionsListModel.qml \
+    qml/pages/SubscriptionsPage.qml \
+    qml/model/StationsListModel.qml \
+    qml/view/EpisodesListView.qml \
+    qml/model/EpisodesListModel.qml
