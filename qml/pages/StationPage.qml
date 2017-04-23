@@ -41,8 +41,6 @@ Page {
 
     id: page
 
-    anchors.fill: parent
-
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
