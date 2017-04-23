@@ -15,8 +15,6 @@ ListModel {
     id: model
 
     function updateModel() {
-        console.log("StationsListModel: updating model, total = " + stations.length);
-
         clear();
 
         stations.forEach(function(station) {

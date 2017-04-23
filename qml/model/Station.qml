@@ -17,7 +17,6 @@ Item {
     property int status: Component.Null
 
     Component.onCompleted: {
-        console.log("Station: Component.onCompleted, feed_url = " + feed_url);
         reload();
     }
 
@@ -37,14 +36,8 @@ Item {
     }
 
     function _readyStateChangeHandler() {
-        console.log("Station: readyState = " + _request.readyState);
         if (_request.readyState === XMLHttpRequest.DONE) {
-
-            console.log("Station: status = " + _request.status);
             if (_request.status === 200) {
-
-                console.log("Station: actually, status = DONE");
-
                 _stationModel.xml = _request.responseText;
                 _episodesModel.xml = _request.responseText;
             } else {
@@ -149,7 +142,6 @@ Item {
         } else {
             _errorHandler();
         }
-        console.log("_extractEpisodes: extracted total " + episodes.length + " episodes");
     }
 
     function _extractEpisode(model) {

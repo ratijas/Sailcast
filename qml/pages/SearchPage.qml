@@ -68,7 +68,7 @@ Page {
                 var callback = function(results) {
                     // parse results
                     // push parsed results into list model
-                    listModel.stations = results;
+                    listModel.stations = results.stations;
                     // refresh page
                     listModel.updateModel();
                 };
