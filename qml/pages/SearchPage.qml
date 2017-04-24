@@ -102,5 +102,4 @@ Page {
             onClicked: pageStack.push(addByRssUrlDialog)
         }
     }
-
 }
