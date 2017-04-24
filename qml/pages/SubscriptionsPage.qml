@@ -19,6 +19,8 @@ Page {
         StationsListView {
             id: subscriptionsListView
 
+            clip: true
+
             header: PageHeader {
                 title: qsTr("Subscriptions")
             }
