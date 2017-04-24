@@ -17,6 +17,7 @@ Item {
     property int status: Component.Null
 
     Component.onCompleted: {
+        feed_urlChanged.connect(reload);
         reload();
     }
 
