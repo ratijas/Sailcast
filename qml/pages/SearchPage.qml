@@ -7,8 +7,11 @@ import "../model"
 Page {
     id: root
 
+    property bool _firstRun : true
+
     onStatusChanged: {
-        if (status === PageStatus.Active) {
+        if (_firstRun && status === PageStatus.Active) {
+            _firstRun = false;
             view.headerItem.forceActiveFocus();
         }
     }
