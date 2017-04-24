@@ -61,7 +61,7 @@ RowLayout {
             property bool _flag: true
 
             text: qsTr("Subscribe")
-            enabled: station.status !== Component.Error
+            enabled: station.status === Component.Ready
 
             function updateText(flag) {
                 _flag = flag;

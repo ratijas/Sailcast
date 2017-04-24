@@ -9,6 +9,17 @@
     </message>
 </context>
 <context>
+    <name>EpisodesListView</name>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: could not fetch station data</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchPage</name>
     <message>
         <source>RSS url</source>

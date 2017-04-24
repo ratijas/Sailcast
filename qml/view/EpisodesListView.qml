@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import QtMultimedia 5.0
 import Sailfish.Silica 1.0
 import "../model"
@@ -47,4 +48,46 @@ SilicaListView {
         }
     }
     VerticalScrollDecorator {}
+
+    ViewPlaceholder {
+        id: loadingPlaceholder
+        enabled: station.status === Component.Loading
+        ColumnLayout {
+            anchors.fill: loadingPlaceholder
+            spacing: Theme.paddingMedium
+
+            BusyIndicator {
+                Layout.alignment: Qt.AlignHCenter
+
+                size: BusyIndicatorSize.Large
+                running: parent.enabled
+            }
+            InfoLabel {
+                Layout.maximumWidth: view.width
+                Layout.alignment: Qt.AlignHCenter
+
+                text: qsTr("Loading...")
+            }
+        }
+    }
+
+    ViewPlaceholder {
+        id: errorPlaceholder
+        enabled: station.status === Component.Error
+        ColumnLayout {
+            anchors.fill: errorPlaceholder
+            spacing: Theme.paddingMedium
+
+            Image {
+                Layout.alignment: Qt.AlignHCenter
+                source: "image://theme/icon-l-attention"
+            }
+            InfoLabel {
+                Layout.maximumWidth: view.width
+                Layout.alignment: Qt.AlignHCenter
+
+                text: qsTr("Error: could not fetch station data");
+            }
+        }
+    }
 }
