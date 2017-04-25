@@ -52,7 +52,7 @@ SilicaListView {
     PullDownMenu {
         MenuItem {
             text: qsTr("Update")
-            onClicked: model.refresh()
+            onClicked: view.station.reload()
         }
         quickSelect: true
     }

@@ -40,9 +40,11 @@ Item {
         if (_request.readyState === XMLHttpRequest.DONE) {
             if (_request.status === 200) {
                 _stationModel.xml = _request.responseText;
+                _stationModel.reload();
                 _episodesModel.xml = _request.responseText;
+                _episodesModel.reload();
             } else {
-                _errorHandler()
+                _errorHandler();
             }
         }
     }
