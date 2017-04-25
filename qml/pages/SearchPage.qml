@@ -22,7 +22,7 @@ Page {
         canAccept: Qt.resolvedUrl(urlText.text).indexOf("http") === 0
 
         DialogHeader {
-            acceptText: "Add"
+            acceptText: qsTr("Add")
         }
         TextField {
             id: urlText
@@ -36,6 +36,9 @@ Page {
 
             label: qsTr("RSS url")
             placeholderText: label
+            EnterKey.enabled: addByRssUrlDialog.canAccept
+            EnterKey.iconSource: "image://theme/icon-m-enter-next"
+            EnterKey.onClicked: addByRssUrlDialog.accept()
 
             text: "http://devzen.ru/feed/" // TODO: remove this
         }
@@ -60,6 +63,8 @@ Page {
 
             placeholderText: qsTr("Search iTunes Store")
 
+            EnterKey.enabled: text.length > 0
+            EnterKey.iconSource: "image://theme/icon-m-enter-next"
             EnterKey.onClicked: {
                 focus = false;
 
@@ -98,7 +103,7 @@ Page {
         Button {
             id: addByRssUrlBtn
             anchors.centerIn: parent
-            text:"Add by RSS url"
+            text: qsTr("Add by RSS url")
             onClicked: pageStack.push(addByRssUrlDialog)
         }
     }

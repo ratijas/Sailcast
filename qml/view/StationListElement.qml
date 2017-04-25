@@ -105,7 +105,7 @@ BackgroundItem {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            text: model.title ? model.title : "Loading..."
+            text: model.title ? model.title : qsTr("Loading...")
 
             color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
             horizontalAlignment: Text.AlignLeft

@@ -47,6 +47,15 @@ SilicaListView {
             }
         }
     }
+
+    PullDownMenu {
+        MenuItem {
+            text: qsTr("Update")
+            onClicked: model.refresh()
+        }
+        quickSelect: true
+    }
+
     VerticalScrollDecorator {}
 
     ViewPlaceholder {

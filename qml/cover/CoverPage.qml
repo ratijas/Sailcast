@@ -30,6 +30,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtMultimedia 5.0
 
 CoverBackground {
     Label {
@@ -42,12 +43,10 @@ CoverBackground {
         id: coverAction
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-next"
-        }
-
-        CoverAction {
-            iconSource: "image://theme/icon-cover-pause"
+            iconSource: !(player.playbackState === MediaPlayer.PlayingState) ? "image://theme/icon-cover-play" : "image://theme/icon-cover-pause"
+            onTriggered: !(player.playbackState === MediaPlayer.PlayingState) ? player.play() : player.pause()
         }
     }
 }
+
 
