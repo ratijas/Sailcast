@@ -45,5 +45,6 @@ ApplicationWindow
         //source: podcastUrl
 
     }
+    property string episodeCoverUrl: null
 }
 

@@ -33,10 +33,16 @@ import Sailfish.Silica 1.0
 import QtMultimedia 5.0
 
 CoverBackground {
-    Label {
+    /*Label {
         id: label
         anchors.centerIn: parent
-        text: qsTr("My Cover")
+        text: player.metaData.coverArtUrlLarge ? player.metaData.coverArtUrlLarge : "Sailcast"
+    }*/
+
+    Image {
+        id: image
+        source: episodeCoverUrl
+        anchors.centerIn: parent
     }
 
     CoverActionList {

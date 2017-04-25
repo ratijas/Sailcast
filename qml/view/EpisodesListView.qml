@@ -40,6 +40,7 @@ SilicaListView {
                     }
                 } else {
                     console.log("loading track: " + model.enclosure);
+                    episodeCoverUrl = model.cover
                     player.source = model.enclosure;
                     player.seek(0);
                     player.play();
@@ -58,7 +59,7 @@ SilicaListView {
 
     VerticalScrollDecorator {}
 
-    ViewPlaceholder {
+    /*ViewPlaceholder {
         id: loadingPlaceholder
         enabled: station.status === Component.Loading
         ColumnLayout {
@@ -78,7 +79,7 @@ SilicaListView {
                 text: qsTr("Loading...")
             }
         }
-    }
+    }*/
 
     ViewPlaceholder {
         id: errorPlaceholder

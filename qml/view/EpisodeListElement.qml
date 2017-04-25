@@ -1,8 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
+import QtMultimedia 5.0
 import Sailfish.Silica 1.0
 
 BackgroundItem {
+    property bool isCurrent: Qt.resolvedUrl(model.enclosure).toString() == player.source.toString()
+
     id: element
 
     width: parent.width
@@ -88,7 +91,7 @@ BackgroundItem {
 
             text: model.title ? model.title : "Loading..."
 
-            color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
+            color: isCurrent ? Theme.highlightColor : Theme.primaryColor
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: Theme.fontSizeMedium
@@ -102,7 +105,7 @@ BackgroundItem {
             Layout.preferredHeight: Theme.iconSizeMedium
             Layout.maximumHeight: Theme.iconSizeMedium
             source: ("image://theme/icon-l-" +
-                     (element.highlighted ? "pause" : "play"))
+                     (isCurrent && player.playbackState === MediaPlayer.PlayingState ? "pause" : "play"))
         }
 
     }
