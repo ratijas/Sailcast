@@ -18,6 +18,10 @@
         <source>Error: could not fetch station data</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchPage</name>
@@ -29,6 +33,14 @@
         <source>Search iTunes Store</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add by RSS url</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StationHeader</name>
@@ -38,6 +50,13 @@
     </message>
     <message>
         <source>Unsubscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StationListElement</name>
+    <message>
+        <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
