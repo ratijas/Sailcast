@@ -2,18 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>CoverPage</name>
-    <message>
-        <source>My Cover</source>
-        <translation>Mein Cover</translation>
-    </message>
-</context>
-<context>
     <name>EpisodesListView</name>
-    <message>
-        <source>Loading...</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Error: could not fetch station data</source>
         <translation type="unfinished"></translation>
