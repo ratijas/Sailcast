@@ -138,7 +138,9 @@ Item {
             for (var i = 0; i < _episodesModel.count; i++) {
                 var episodeModel = _episodesModel.get(i);
 
-                episodes.push(_extractEpisode(episodeModel));
+                if (episodeModel.enclosure) {
+                    episodes.push(_extractEpisode(episodeModel));
+                }
             }
             _episodesLoaded = true;
             _checkStatusReady();
