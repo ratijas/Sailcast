@@ -48,6 +48,10 @@
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Episodes: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SubscriptionsPage</name>

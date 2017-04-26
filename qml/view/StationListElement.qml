@@ -99,29 +99,34 @@ BackgroundItem {
             }
         }
 
-        Label {
-            id: title
-
+        ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            text: model.title ? model.title : qsTr("Loading...")
+            Label {
+                id: title
 
-            color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-            font.pixelSize: Theme.fontSizeLarge
-            elide: Text.ElideRight
-        }
+                Layout.fillWidth: true
 
-        Text {
-            id: episodesCount
+                text: model.title ? model.title : qsTr("Loading...")
 
-            width: 100
+                color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: Theme.fontSizeLarge
+                elide: Text.ElideRight
+            }
 
-            text: model.episodesCount
+            Text {
+                id: episodesCount
 
-            color: element.highlighted ? Theme.highlightColor : Theme.primaryColor
+                Layout.fillWidth: true
+
+                text: qsTr("Episodes: ") + model.episodesCount
+
+                color: element.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeSmall
+            }
         }
     }
 }
