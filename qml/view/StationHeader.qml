@@ -63,7 +63,13 @@ RowLayout {
             text: qsTr("Subscribe")
             enabled: _flag || (station.status === Component.Ready)
 
-            function updateText(flag) {
+            function _update() {
+                Dao.isSubscribed(station.feed_url.toString(), function (flag) {
+                    _updateText(flag);
+                });
+            }
+
+            function _updateText(flag) {
                 _flag = flag;
                 text = _flag
                         ? qsTr("Unsubscribe")
@@ -73,19 +79,13 @@ RowLayout {
             Component.onCompleted: {
                 Dao.subscription.connect(function(url, flag) {
                     if (url === station.feed_url.toString()) {
-                        updateText(flag);
+                        _updateText(flag);
                     }
                 });
                 header.stationChanged.connect(function() {
                     _update();
                 });
                 _update();
-            }
-
-            function _update() {
-                Dao.isSubscribed(station.feed_url.toString(), function (flag) {
-                    updateText(flag);
-                });
             }
 
             onClicked: {
