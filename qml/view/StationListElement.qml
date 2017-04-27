@@ -13,90 +13,13 @@ BackgroundItem {
         anchors.fill: parent
         spacing: Theme.paddingMedium
 
-        Item {
-            id: cover
-
+        CoverView {
             Layout.minimumWidth: parent.height
             Layout.preferredWidth: parent.height
             Layout.maximumWidth: parent.height
             Layout.minimumHeight: parent.height
 
-            states: [
-                State {
-                    name: "coverLoading"
-                    when: coverImage.status === Image.Loading
-                    PropertyChanges {
-                        target: coverImage
-                        opacity: 0
-                    }
-                },
-                State {
-                    name: "coverReady"
-                    when: coverImage.status === Image.Ready
-                    PropertyChanges {
-                        target: coverImage
-                        opacity: 1
-                    }
-                },
-                State {
-                    name: "coverError"
-                    when: coverImage.status === Image.Error || element.state === "stationError"
-                    PropertyChanges {
-                        target: coverDefault
-                        opacity: 1
-                    }
-                }
-            ]
-
-            transitions: Transition {
-                NumberAnimation {
-                    targets: [coverImage]
-                    property: "opacity"
-                    from: 0
-                    to: 1
-                    duration: 2000
-                    easing.type: Easing.InOutQuad
-                }
-
-                NumberAnimation {
-                    targets: [coverDefault]
-                    property: "opacity"
-                    from: 1
-                    to: 0
-                    duration: 2000
-                    easing.type: Easing.InOutQuad
-                }
-            }
-
-            Image {
-                id: coverImage
-                fillMode: Image.PreserveAspectCrop
-                anchors.fill: cover
-
-                source: model.cover
-
-                opacity: 1
-            }
-
-            // in case station's cover can not be loaded
-            Image {
-                id: coverDefault
-                anchors.centerIn: cover
-
-                // TODO: add default podcast cover
-                source: ("image://theme/icon-l-play?" +
-                         (element.highlighted
-                          ? Theme.highlightColor
-                          : Theme.primaryColor))
-
-                opacity: 0
-            }
-
-            BusyIndicator {
-                size: BusyIndicatorSize.Medium
-                anchors.centerIn: cover
-                running: coverImage.status === Image.Loading
-            }
+            cover: model.cover
         }
 
         ColumnLayout {
