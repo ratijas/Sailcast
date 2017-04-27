@@ -26,6 +26,15 @@ Page {
             }
 
             model: SubscriptionsListModel {}
+
+            PullDownMenu {
+                MenuItem {
+                    text: qsTr("Update")
+                    onClicked: {subscriptionsListView.model.refresh()}
+                }
+                quickSelect: true
+                busy: root.status == Component.Loading
+            }
         }
 
         BackgroundItem {
