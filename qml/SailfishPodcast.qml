@@ -37,14 +37,16 @@ import "service"
 
 ApplicationWindow
 {
+    /**
+     * Currently playing `Episode` instance.
+     */
+    property var nowPlaying
+
     initialPage: Component { SubscriptionsPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
+
     MediaPlayer {
         id: player
-        //source: podcastUrl
-
     }
-    property string episodeCoverUrl: null
 }
-

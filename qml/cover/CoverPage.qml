@@ -29,20 +29,46 @@
 */
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Sailfish.Silica 1.0
 import QtMultimedia 5.0
 
 CoverBackground {
-    /*Label {
-        id: label
-        anchors.centerIn: parent
-        text: player.metaData.coverArtUrlLarge ? player.metaData.coverArtUrlLarge : "Sailcast"
-    }*/
 
-    Image {
-        id: image
-        source: episodeCoverUrl
-        anchors.centerIn: parent
+    ColumnLayout {
+        id: layout
+        anchors.fill: parent
+        spacing: Theme.paddingMedium
+
+        Image {
+            id: image
+
+            Layout.fillWidth: true
+            Layout.preferredHeight: layout.width
+
+            source: nowPlaying.cover
+            fillMode: Image.PreserveAspectFit
+            verticalAlignment: Image.AlignVCenter
+        }
+
+        Item {
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignTop
+            Label {
+                anchors.fill: parent
+                anchors.leftMargin: Theme.paddingSmall
+                anchors.rightMargin: Theme.paddingSmall
+                verticalAlignment: Text.AlignTop
+
+                text: nowPlaying ? (nowPlaying.title + " — " + nowPlaying.station.title) : ""
+                font.pixelSize: Theme.fontSizeSmall
+            }
+        }
+
+        Item {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
     }
 
     CoverActionList {

@@ -40,7 +40,7 @@ SilicaListView {
                     }
                 } else {
                     console.log("loading track: " + model.enclosure);
-                    episodeCoverUrl = model.cover
+                    nowPlaying = station.episodes[index];
                     player.source = model.enclosure;
                     player.seek(0);
                     player.play();
