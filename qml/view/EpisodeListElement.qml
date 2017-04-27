@@ -15,72 +15,13 @@ BackgroundItem {
         anchors.fill: parent
         spacing: Theme.paddingMedium
 
-        Item {
-            id: cover
-
+        CoverView {
             Layout.minimumWidth: parent.height
             Layout.preferredWidth: parent.height
             Layout.maximumWidth: parent.height
             Layout.minimumHeight: parent.height
 
-            states: [
-                State {
-                    name: "coverLoading"
-                    when: coverImage.status === Image.Loading
-                },
-                State {
-                    name: "coverReady"
-                    when: coverImage.status === Image.Ready
-                    PropertyChanges {
-                        target: coverImage
-                        opacity: 1
-                    }
-                },
-                State {
-                    name: "coverError"
-                    when: coverImage.status === Image.Error || element.state === "stationError"
-                    PropertyChanges {
-                        target: coverDefault
-                        opacity: 1
-                    }
-                }
-            ]
-
-            transitions: Transition {
-                NumberAnimation {
-                    targets: [coverImage, coverDefault]
-                    property: "opacity"
-                    duration: 2000
-                    easing.type: Easing.InOutQuad
-                }
-            }
-
-            Image {
-                id: coverImage
-                fillMode: Image.PreserveAspectCrop
-                anchors.fill: cover
-                source: model.cover
-                opacity: 0
-            }
-
-            // in case station's cover can not be loaded
-            Image {
-                id: coverDefault
-                anchors.centerIn: cover
-
-                // TODO: add default podcast cover
-                source: ("image://theme/icon-l-play?" +
-                         (element.highlighted
-                          ? Theme.highlightColor
-                          : Theme.primaryColor))
-                opacity: 0
-            }
-
-            BusyIndicator {
-                size: BusyIndicatorSize.Small
-                anchors.centerIn: cover
-                running: coverImage.status === Image.Loading
-            }
+            cover: model.cover
         }
 
         Label {
@@ -89,7 +30,7 @@ BackgroundItem {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            text: model.title ? model.title : "Loading..."
+            text: model.title
 
             color: isCurrent ? Theme.highlightColor : Theme.primaryColor
             horizontalAlignment: Text.AlignLeft

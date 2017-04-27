@@ -9,6 +9,14 @@ Item {
 
     states: [
         State {
+            name: "loading"
+            when: status === Image.Loading
+            PropertyChanges {
+                target: coverImage
+                opacity: 0
+            }
+        },
+        State {
             name: "ready"
             when: status === Image.Ready
             PropertyChanges {
@@ -34,14 +42,25 @@ Item {
         }
     ]
 
-    transitions: Transition {
-        NumberAnimation {
-            targets: [coverImage, coverDefault]
-            property: "opacity"
-            duration: 2000
-            easing.type: Easing.InOutQuad
+    transitions: [
+        Transition {
+            to: "loading"
+
+            NumberAnimation {
+                target: coverImage
+                property: "opacity"
+                duration: 0
+            }
+        },
+        Transition {
+            NumberAnimation {
+                targets: [coverImage, coverDefault]
+                property: "opacity"
+                duration: 2000
+                easing.type: Easing.InOutQuad
+            }
         }
-    }
+    ]
 
     Image {
         id: coverImage
@@ -52,6 +71,13 @@ Item {
         source: model.cover
 
         opacity: 1
+    }
+
+    BusyIndicator {
+        anchors.centerIn: cover
+
+        size: BusyIndicatorSize.Medium
+        running: model.cover && !(status === Image.Error || status === Image.Ready)
     }
 
     // in case station's cover can not be loaded
@@ -69,10 +95,10 @@ Item {
         opacity: 1
     }
 
-    BusyIndicator {
-        anchors.centerIn: cover
-
-        size: BusyIndicatorSize.Medium
-        running: ! (status === Image.Error || status === Image.Ready)
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            console.log("CoverView: cover:", model.cover, ", status:", status);
+        }
     }
 }
