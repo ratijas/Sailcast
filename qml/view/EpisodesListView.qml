@@ -55,6 +55,7 @@ SilicaListView {
             onClicked: view.station.reload()
         }
         quickSelect: true
+        busy: view.station.status == Component.Loading
     }
 
     VerticalScrollDecorator {}
