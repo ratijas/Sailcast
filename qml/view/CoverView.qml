@@ -66,7 +66,14 @@ Item {
     Image {
         id: coverImage
 
-        fillMode: Image.PreserveAspectCrop
+        fillMode: {
+            var max = Math.max(sourceSize.height, sourceSize.width);
+            var min = Math.min(sourceSize.height, sourceSize.width);
+
+            return ((max - min) / min) < 0.1
+                    ? Image.PreserveAspectCrop
+                    : Image.PreserveAspectFit;
+        }
         anchors.fill: view
 
         source: view.cover ? view.cover : Qt.resolvedUrl()
