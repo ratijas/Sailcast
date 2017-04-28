@@ -46,7 +46,7 @@ CoverBackground {
             Layout.fillWidth: true
             Layout.preferredHeight: layout.width
 
-            source: nowPlaying.cover
+            source: nowPlaying ? nowPlaying.cover : Qt.resolvedUrl()
             fillMode: Image.PreserveAspectFit
             verticalAlignment: Image.AlignVCenter
         }
