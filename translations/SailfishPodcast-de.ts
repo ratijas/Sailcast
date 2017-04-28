@@ -63,5 +63,9 @@
         <source>Search / Add RSS</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
