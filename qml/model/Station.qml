@@ -173,7 +173,10 @@ Item {
                                                   station: root,
                                                   title: title,
                                                   description: description,
-                                                  cover: cover,
+                                                  ownCover: (cover !== ""),
+                                                  cover: Qt.binding(function() {
+                                                      return this.ownCover ? cover : root.cover;
+                                                  }),
                                                   enclosure: enclosure,
                                                   pubDate: pubDate,
                                               });
