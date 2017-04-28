@@ -32,6 +32,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import Sailfish.Silica 1.0
 import QtMultimedia 5.0
+import "../view"
 
 CoverBackground {
 
@@ -40,15 +41,11 @@ CoverBackground {
         anchors.fill: parent
         spacing: Theme.paddingMedium
 
-        Image {
-            id: image
-
+        CoverView {
             Layout.fillWidth: true
             Layout.preferredHeight: layout.width
 
-            source: nowPlaying ? nowPlaying.cover : Qt.resolvedUrl()
-            fillMode: Image.PreserveAspectFit
-            verticalAlignment: Image.AlignVCenter
+            cover: nowPlaying ? nowPlaying.cover : Qt.resolvedUrl()
         }
 
         Item {
@@ -80,5 +77,3 @@ CoverBackground {
         }
     }
 }
-
-
