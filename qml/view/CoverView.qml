@@ -5,7 +5,7 @@ Item {
     property url cover
     property alias status: coverImage.status
 
-    id: cover
+    id: view
 
     states: [
         State {
@@ -66,25 +66,27 @@ Item {
         id: coverImage
 
         fillMode: Image.PreserveAspectCrop
-        anchors.fill: cover
+        anchors.fill: view
 
-        source: model.cover
+        source: view.cover ? view.cover : Qt.resolvedUrl()
 
         opacity: 1
     }
 
     BusyIndicator {
-        anchors.centerIn: cover
+        anchors.centerIn: view
 
-        size: BusyIndicatorSize.Medium
-        running: model.cover && !(status === Image.Error || status === Image.Ready)
+        size: Math.min(view.height, view.width) <= Theme.iconSizeLarge
+                ? BusyIndicatorSize.Medium :
+                  BusyIndicatorSize.Large
+        running: (view.cover != "") && (status !== Image.Error) && (status !== Image.Ready)
     }
 
     // in case station's cover can not be loaded
     Image {
         id: coverDefault
 
-        anchors.fill: cover
+        anchors.fill: view
 
         // TODO: add default podcast cover
         source: ("image://theme/icon-l-play?" +
@@ -93,12 +95,5 @@ Item {
                   : Theme.primaryColor))
 
         opacity: 1
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            console.log("CoverView: cover:", model.cover, ", status:", status);
-        }
     }
 }
