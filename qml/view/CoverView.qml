@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 Item {
     property url cover
     property alias status: coverImage.status
+    property bool highlighted: false
 
     id: view
 
@@ -90,7 +91,7 @@ Item {
 
         // TODO: add default podcast cover
         source: ("image://theme/icon-l-play?" +
-                 (element.highlighted
+                 (highlighted
                   ? Theme.highlightColor
                   : Theme.primaryColor))
 

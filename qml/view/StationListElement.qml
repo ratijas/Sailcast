@@ -20,6 +20,7 @@ BackgroundItem {
             Layout.minimumHeight: parent.height
 
             cover: model.cover
+            highlighted: element.highlighted
         }
 
         ColumnLayout {
