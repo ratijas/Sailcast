@@ -122,7 +122,9 @@ Item {
 
             title = model.title;
             description = model.description;
-            cover = model.cover;
+            if (cover == "") {
+                cover = model.cover;
+            }
 
             _stationLoaded = true;
             _checkStatusReady();
