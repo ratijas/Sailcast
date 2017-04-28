@@ -15,16 +15,14 @@ RowLayout {
 
     spacing: Theme.paddingLarge
 
-    Image {
+    CoverView {
         id: stationCover
 
         Layout.fillHeight: true
         Layout.maximumWidth: parent.height
         Layout.preferredWidth: parent.height
 
-        fillMode: Image.PreserveAspectFit
-
-        source: header.station.cover
+        cover: header.station.cover
     }
 
     ColumnLayout {
