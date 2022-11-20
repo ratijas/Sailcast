@@ -67,5 +67,9 @@
         <source>Update</source>
         <translation>Обновить</translation>
     </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

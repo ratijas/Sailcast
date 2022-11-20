@@ -24,7 +24,7 @@ OTHER_FILES += qml/SailfishPodcast.qml \
     translations/*.ts \
     SailfishPodcast.desktop
 
-SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172 256x256
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -48,6 +48,7 @@ DISTFILES += \
     qml/view/StationHeader.qml \
     icons/108x108/SailfishPodcast.png \
     icons/128x128/SailfishPodcast.png \
+    icons/172x172/SailfishPodcast.png \
     icons/256x256/SailfishPodcast.png \
     icons/86x86/SailfishPodcast.png \
     meta/database.md \

@@ -20,7 +20,8 @@ License:    LICENSE
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  SailfishPodcast.yaml
-Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   sailfishsilica-qt5 >= 1.0
+Requires:   qt5-qtdeclarative-import-xmllistmodel >= 5.6
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
