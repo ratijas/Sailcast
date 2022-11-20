@@ -37,15 +37,6 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/SailfishPodcast-ru.ts
 
 DISTFILES += \
-    qml/pages/StationPage.qml \
-    qml/model/Station.qml \
-    qml/service/Dao.qml \
-    qml/pages/SearchPage.qml \
-    qml/service/qmldir \
-    qml/view/StationListElement.qml \
-    qml/model/Episode.qml \
-    qml/view/EpisodeListElement.qml \
-    qml/view/StationHeader.qml \
     icons/108x108/SailfishPodcast.png \
     icons/128x128/SailfishPodcast.png \
     icons/172x172/SailfishPodcast.png \
@@ -53,13 +44,22 @@ DISTFILES += \
     icons/86x86/SailfishPodcast.png \
     meta/database.md \
     meta/schema.sql \
-    rpm/SailfishPodcast.spec \
-    qml/view/StationsListView.qml \
-    qml/model/SubscriptionsListModel.qml \
-    qml/pages/SubscriptionsPage.qml \
-    qml/model/StationsListModel.qml \
-    qml/view/EpisodesListView.qml \
+    qml/model/Episode.qml \
     qml/model/EpisodesListModel.qml \
     qml/model/SearchResult.qml \
+    qml/model/Station.qml \
+    qml/model/StationsListModel.qml \
+    qml/model/SubscriptionsListModel.qml \
+    qml/pages/SearchPage.qml \
+    qml/pages/StationPage.qml \
+    qml/pages/SubscriptionsPage.qml \
+    qml/service/Dao.qml \
     qml/service/ITunes.qml \
-    qml/view/CoverView.qml
+    qml/service/qmldir \
+    qml/view/CoverView.qml \
+    qml/view/EpisodeListElement.qml \
+    qml/view/EpisodesListView.qml \
+    qml/view/StationHeader.qml \
+    qml/view/StationListElement.qml \
+    qml/view/StationsListView.qml \
+    rpm/SailfishPodcast.spec
