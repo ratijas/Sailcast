@@ -103,8 +103,8 @@ Item {
                 DELETE FROM subscriptions
                 WHERE feed_url = ?
             ", [feed_url]);
-            subscription(feed_url, false);
         });
+        subscription(feed_url, false);
     }
 
     /**
@@ -114,6 +114,7 @@ Item {
      * @param callback continuation function of one argument -- boolean result of this check.
      */
     function isSubscribed(feed_url, callback) {
+        var result = false;
         database = LocalStorage.openDatabaseSync(dbName, "1.0")
         database.transaction(function(tx) {
             var cursor = tx.executeSql("
@@ -121,9 +122,9 @@ Item {
                 FROM subscriptions
                 WHERE feed_url = ?
             ", [feed_url]);
-            var result = cursor.rows.length === 1;
-            callback(result);
+            result = cursor.rows.length === 1;
         });
+        callback(result);
     }
 
     Component {
