@@ -10,9 +10,9 @@ import Sailfish.Silica 1.0
 import "../service"
 
 RowLayout {
-    property var station
-
     id: header
+
+    property var station
 
     Layout.fillWidth: true
     Layout.preferredHeight: 200
@@ -48,7 +48,7 @@ RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            text: station.title
+            text: header.station.title
 
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: Theme.fontSizeMedium

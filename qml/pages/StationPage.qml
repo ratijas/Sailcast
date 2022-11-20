@@ -22,7 +22,7 @@ Page {
         spacing: 0
 
         StationHeader {
-            station:  page.station
+            station: page.station
         }
 
         EpisodesListView {
