@@ -1,3 +1,9 @@
+/*
+  SPDX-FileCopyrightText: 2017, 2022 ivan tkachenko <me@ratijas.tk>
+
+  SPDX-License-Identifier: MIT OR Apache-2.0
+*/
+
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import QtMultimedia 5.0
