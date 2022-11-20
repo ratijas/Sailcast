@@ -37,9 +37,9 @@ import "../view"
 import "../service"
 
 Page {
-    property var station
-
     id: page
+
+    property var station
 
     ColumnLayout {
         anchors.fill: parent

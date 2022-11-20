@@ -2,16 +2,16 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Item {
+    id: view
+
     property url cover
     property alias status: coverImage.status
     property bool highlighted: false
 
-    id: view
-
     states: [
         State {
             name: "loading"
-            when: status === Image.Loading
+            when: view.status === Image.Loading
             PropertyChanges {
                 target: coverImage
                 opacity: 0
@@ -19,7 +19,7 @@ Item {
         },
         State {
             name: "ready"
-            when: status === Image.Ready
+            when: view.status === Image.Ready
             PropertyChanges {
                 target: coverImage
                 opacity: 1
@@ -31,7 +31,7 @@ Item {
         },
         State {
             name: "error"
-            when: status === Image.Error
+            when: view.status === Image.Error
             PropertyChanges {
                 target: coverImage
                 opacity: 0
@@ -76,7 +76,7 @@ Item {
         }
         anchors.fill: view
 
-        source: view.cover ? view.cover : Qt.resolvedUrl()
+        source: view.cover
 
         opacity: 1
     }
@@ -87,7 +87,7 @@ Item {
         size: Math.min(view.height, view.width) <= Theme.iconSizeLarge
                 ? BusyIndicatorSize.Medium :
                   BusyIndicatorSize.Large
-        running: (view.cover != "") && (status !== Image.Error) && (status !== Image.Ready)
+        running: (view.cover.toString() !== "") && (status !== Image.Error) && (status !== Image.Ready)
     }
 
     // in case station's cover can not be loaded

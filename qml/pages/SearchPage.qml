@@ -7,7 +7,7 @@ import "../model"
 Page {
     id: root
 
-    property bool _firstRun : true
+    property bool _firstRun: true
 
     onStatusChanged: {
         if (_firstRun && status === PageStatus.Active) {
@@ -45,7 +45,7 @@ Page {
 
         acceptDestination: Component {
             StationPage {
-                station: Dao.emptyStation()
+                station: Dao.emptyStation();
             }
         }
         onAcceptPendingChanged: {

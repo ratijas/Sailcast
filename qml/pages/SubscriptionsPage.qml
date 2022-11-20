@@ -30,10 +30,10 @@ Page {
             PullDownMenu {
                 MenuItem {
                     text: qsTr("Update")
-                    onClicked: {subscriptionsListView.model.refresh()}
+                    onClicked: subscriptionsListView.model.refresh()
                 }
                 quickSelect: true
-                busy: root.status == Component.Loading
+                busy: root.status === Component.Loading
             }
         }
 

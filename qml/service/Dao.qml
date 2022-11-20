@@ -4,10 +4,8 @@ import QtQuick.LocalStorage 2.0
 import "../model"
 
 Item {
-
     property string dbName: "SailcastDatabase"
     property var database
-
 
     /**
      * This signal is fired whenever user subscribes to or unsubscribes from a station.
@@ -19,7 +17,6 @@ Item {
      * This should be used in conjunction with asynchronous method `isSubscribed`.
      */
     signal subscription(string feed_url, bool subscribed)
-
 
     Component.onCompleted: {
         database = LocalStorage.openDatabaseSync(dbName, "1.0");
@@ -124,7 +121,7 @@ Item {
     }
 
     Component {
-        id: _stationComponent
+        id: stationComponent
         Station {}
     }
 
@@ -132,14 +129,14 @@ Item {
      * Create new `Station` object from given RSS feed URL.
      */
     function stationFromUrl(feed_url) {
-        console.log("Dao: creating station from url: " + feed_url);
-        return _stationComponent.createObject(null, {feed_url: feed_url});
+        console.log("Dao: creating station from url:", feed_url);
+        return stationComponent.createObject(null, {feed_url: feed_url});
     }
 
     /**
      * Create empty `Station` object without any data.
      */
     function emptyStation() {
-        return _stationComponent.createObject(null);
+        return stationComponent.createObject(null);
     }
 }

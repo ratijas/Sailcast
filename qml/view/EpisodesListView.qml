@@ -39,9 +39,9 @@ SilicaListView {
                         console.log("play")
                     }
                 } else {
-                    console.log("loading track: " + model.enclosure);
+                    console.log("loading track: " + myUrl);
                     nowPlaying = station.episodes[index];
-                    player.source = model.enclosure;
+                    player.source = myUrl;
                     player.seek(0);
                     player.play();
                 }

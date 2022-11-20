@@ -35,8 +35,7 @@ import "pages"
 import "model"
 import "service"
 
-ApplicationWindow
-{
+ApplicationWindow {
     /**
      * Currently playing `Episode` instance.
      */

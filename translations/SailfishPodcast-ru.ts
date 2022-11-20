@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru_RU" sourcelanguage="en">
 <context>
+    <name>CoverPage</name>
+    <message>
+        <source>%1 — %2</source>
+        <comment>station and title</comment>
+        <translation>%1 — %2</translation>
+    </message>
+</context>
+<context>
     <name>EpisodesListView</name>
     <message>
         <source>Error: could not fetch station data</source>
@@ -66,10 +74,6 @@
     <message>
         <source>Update</source>
         <translation>Обновить</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

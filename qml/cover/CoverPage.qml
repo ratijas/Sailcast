@@ -57,8 +57,10 @@ CoverBackground {
                 anchors.rightMargin: Theme.paddingSmall
                 verticalAlignment: Text.AlignTop
 
-                text: nowPlaying ? (nowPlaying.title + " — " + nowPlaying.station.title) : ""
+                text: nowPlaying ? qsTr("%1 — %2", "station and title").arg(nowPlaying.title).arg(nowPlaying.station.title) : ""
                 font.pixelSize: Theme.fontSizeSmall
+                elide: Text.ElideMiddle
+                maximumLineCount: 1
             }
         }
 

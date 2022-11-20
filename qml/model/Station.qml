@@ -39,10 +39,10 @@ Item {
     function _readyStateChangeHandler() {
         if (_request.readyState === XMLHttpRequest.DONE) {
             if (_request.status === 200) {
-                _stationModel.xml = _request.responseText;
-                _stationModel.reload();
-                _episodesModel.xml = _request.responseText;
-                _episodesModel.reload();
+                stationModel.xml = _request.responseText;
+                stationModel.reload();
+                episodesModel.xml = _request.responseText;
+                episodesModel.reload();
             } else {
                 _errorHandler();
             }
@@ -50,11 +50,11 @@ Item {
     }
 
     XmlListModel {
-        id:  _stationModel
+        id: stationModel
         onStatusChanged: {
-            if (_stationModel.status === XmlListModel.Ready) {
+            if (stationModel.status === XmlListModel.Ready) {
                 _extractStation();
-            } else if (_stationModel.status === XmlListModel.Error) {
+            } else if (stationModel.status === XmlListModel.Error) {
                 _errorHandler();
             }
         }
@@ -78,12 +78,12 @@ Item {
     }
 
     XmlListModel {
-        id:  _episodesModel
+        id: episodesModel
 
         onStatusChanged: {
-            if (_episodesModel.status === XmlListModel.Ready) {
+            if (episodesModel.status === XmlListModel.Ready) {
                 _extractEpisodes();
-            } else if (_episodesModel.status === XmlListModel.Error) {
+            } else if (episodesModel.status === XmlListModel.Error) {
                 _errorHandler();
             }
         }
@@ -117,12 +117,12 @@ Item {
     }
 
     function _extractStation() {
-        if (_stationModel.count === 1) {
-            var model = _stationModel.get(0);
+        if (stationModel.count === 1) {
+            var model = stationModel.get(0);
 
             title = model.title;
             description = model.description;
-            if (cover == "") {
+            if (cover.toString() === "") {
                 cover = model.cover;
             }
 
@@ -135,10 +135,10 @@ Item {
     }
 
     function _extractEpisodes() {
-        if (_episodesModel.count !== 0) {
+        if (episodesModel.count !== 0) {
             episodes = []
-            for (var i = 0; i < _episodesModel.count; i++) {
-                var episodeModel = _episodesModel.get(i);
+            for (var i = 0; i < episodesModel.count; i++) {
+                var episodeModel = episodesModel.get(i);
 
                 if (episodeModel.enclosure) {
                     episodes.push(_extractEpisode(episodeModel));
@@ -153,33 +153,32 @@ Item {
 
     function _extractEpisode(model) {
         var episode = episodeFromRawParts(
-                    model.title,
-                    model.description,
-                    model.cover,
-                    model.enclosure,
-                    model.pubDate
-                    );
+            model.title,
+            model.description,
+            model.cover,
+            model.enclosure,
+            model.pubDate
+        );
         return episode;
     }
 
     Component {
-        id: _episodeComponent
+        id: episodeComponent
         Episode {}
     }
 
     function episodeFromRawParts(title, description, cover, enclosure, pubDate) {
-        return _episodeComponent.createObject(root,
-                                              {
-                                                  station: root,
-                                                  title: title,
-                                                  description: description,
-                                                  ownCover: (cover !== ""),
-                                                  cover: Qt.binding(function() {
-                                                      return this.ownCover ? cover : root.cover;
-                                                  }),
-                                                  enclosure: enclosure,
-                                                  pubDate: pubDate,
-                                              });
+        return episodeComponent.createObject(root, {
+            station: root,
+            title: title,
+            description: description,
+            ownCover: (cover !== ""),
+            cover: Qt.binding(function() {
+                return this.ownCover ? cover : root.cover;
+            }),
+            enclosure: enclosure,
+            pubDate: pubDate
+        });
     }
 
     function _checkStatusReady() {

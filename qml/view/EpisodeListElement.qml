@@ -4,11 +4,11 @@ import QtMultimedia 5.0
 import Sailfish.Silica 1.0
 
 BackgroundItem {
-    property bool isCurrent: Qt.resolvedUrl(model.enclosure).toString() == player.source.toString()
-
     id: element
 
-    width: parent.width
+    property bool isCurrent: Qt.resolvedUrl(model.enclosure).toString() === player.source.toString()
+
+    width: parent ? parent.width : undefined
     height: Theme.iconSizeLarge
 
     RowLayout {
@@ -49,6 +49,5 @@ BackgroundItem {
             source: ("image://theme/icon-l-" +
                      (isCurrent && player.playbackState === MediaPlayer.PlayingState ? "pause" : "play"))
         }
-
     }
 }
