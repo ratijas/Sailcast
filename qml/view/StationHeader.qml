@@ -13,6 +13,7 @@ RowLayout {
     id: header
 
     property var station
+    property bool subscribed
 
     Layout.fillWidth: true
     Layout.preferredHeight: 200
@@ -59,42 +60,14 @@ RowLayout {
         }
 
         Button {
-            /**
-             * using preudocode: `isSubscribed(station) implies _flag`.
-             */
-            property bool _flag: true
-
-            text: qsTr("Subscribe")
-            enabled: _flag || (station.status === Component.Ready)
-
-            function _update() {
-                Dao.isSubscribed(station.feed_url.toString(), function (flag) {
-                    _updateText(flag);
-                });
-            }
-
-            function _updateText(flag) {
-                _flag = flag;
-                text = _flag
-                        ? qsTr("Unsubscribe")
-                        : qsTr("Subscribe");
-            }
-
-            Component.onCompleted: {
-                Dao.subscription.connect(function(url, flag) {
-                    if (url === station.feed_url.toString()) {
-                        _updateText(flag);
-                    }
-                });
-                header.stationChanged.connect(function() {
-                    _update();
-                });
-                _update();
-            }
+            text: header.subscribed
+                ? qsTr("Unsubscribe")
+                : qsTr("Subscribe")
+            enabled: header.subscribed || (header.station.status === Component.Ready)
 
             onClicked: {
-                var url = station.feed_url.toString();
-                if (_flag) {
+                var url = header.station.feed_url.toString();
+                if (header.subscribed) {
                     Dao.unsubscribe(url);
                 } else {
                     Dao.subscribe(url);
@@ -105,4 +78,22 @@ RowLayout {
         /* for spacing */
         Item { Layout.fillWidth: true; Layout.preferredHeight: 0 }
     }
+
+    function _update() {
+        Dao.isSubscribed(station.feed_url.toString(), function (flag) {
+            header.subscribed = flag;
+        });
+    }
+
+    Connections {
+        target: Dao
+        function onSubscription(url, flag) {
+            if (url === station.feed_url.toString()) {
+                header.subscribed = flag;
+            }
+        }
+    }
+
+    onStationChanged: _update()
+    Component.onCompleted: _update()
 }
