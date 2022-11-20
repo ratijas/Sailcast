@@ -85,15 +85,13 @@ RowLayout {
         });
     }
 
-    Connections {
-        target: Dao.self
-        function onSubscription(url, flag) {
+    onStationChanged: _update()
+    Component.onCompleted: {
+        _update();
+        Dao.subscription.connect(function(url, flag) {
             if (url === station.feed_url.toString()) {
                 header.subscribed = flag;
             }
-        }
+        });
     }
-
-    onStationChanged: _update()
-    Component.onCompleted: _update()
 }

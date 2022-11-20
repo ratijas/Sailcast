@@ -23,7 +23,11 @@ ListModel {
     function setStations(/*list<Station>*/ stations) {
         _stations.forEach(function(station, i) {
             station.statusChanged.disconnect(_connections[i]);
-            station.destroy();
+            // XXX: destroying it breaks the StationHeader. We should either
+            // manage a pool of Station objects, or simply operate on
+            // primitive data structures.
+            //
+            // station.destroy();
         })
         _connections = [];
         _stations = [];
