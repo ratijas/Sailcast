@@ -86,7 +86,7 @@ RowLayout {
     }
 
     Connections {
-        target: Dao
+        target: Dao.self
         function onSubscription(url, flag) {
             if (url === station.feed_url.toString()) {
                 header.subscribed = flag;

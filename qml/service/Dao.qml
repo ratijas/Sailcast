@@ -13,6 +13,9 @@ Item {
     property string dbName: "SailcastDatabase"
     property var database
 
+    // is a hack / workaround for Connections {}
+    property QtObject self: this
+
     /**
      * This signal is fired whenever user subscribes to or unsubscribes from a station.
      *
