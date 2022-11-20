@@ -25,15 +25,17 @@ Page {
                 title: qsTr("Subscriptions")
             }
 
-            model: SubscriptionsListModel {}
+            model: SubscriptionsListModel {
+                id: subscriptionsModel
+            }
 
             PullDownMenu {
                 MenuItem {
                     text: qsTr("Update")
-                    onClicked: subscriptionsListView.model.refresh()
+                    onClicked: subscriptionsModel.refresh()
                 }
                 quickSelect: true
-                busy: root.status === Component.Loading
+                busy: subscriptionsModel.status === Component.Loading
             }
         }
 

@@ -5,27 +5,47 @@ import "../service"
  * Abstract model representing list of `Station` objects, suitable for use as a `ListView.model` property.
  */
 ListModel {
-    /**
-     * List of `Station` objects.  After altering this list, call `updateModel`
-     * method so that changes could be reflected in the ListModel.
-     */
-    property var stations: []
+    property /*list<Station>*/var _stations: []
+    property var _connections: []
 
-    function updateModel() {
+    property int status: Component.Ready
+
+    function stationAt(i) {
+        return _stations[i];
+    }
+
+    function setStations(/*list<Station>*/ stations) {
+        _stations.forEach(function(station, i) {
+            station.statusChanged.disconnect(_connections[i]);
+            station.destroy();
+        })
+        _connections = [];
+        _stations = [];
         clear();
 
         stations.forEach(function(station, i) {
-            station.statusChanged.connect(updateModelAt.bind(null, i));
+            var connection = _updateModelAt.bind(null, i);
+            station.statusChanged.connect(connection);
+            _connections.push(connection);
+            _stations.push(station)
             append(_model(station));
         });
     }
 
-    /**
-     * Optimized version of `updateModel`.
-     */
-    function updateModelAt(i) {
-        var station = stations[i];
+    function _updateStatus() {
+        for (var i = 0; i < _stations.length; i++) {
+            if (_stations[i].status === Component.Loading) {
+                status = Component.Loading;
+                return;
+            }
+        }
+        status = Component.Ready;
+    }
+
+    function _updateModelAt(i) {
+        var station = _stations[i];
         set(i, _model(station));
+        _updateStatus();
     }
 
     function _model(station) {

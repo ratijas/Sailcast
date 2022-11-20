@@ -49,7 +49,7 @@ Item {
      *
      * @param callback(list<Station>)
      */
-    function subscriptions(callback) {
+    function subscriptions(parent, callback) {
         database = LocalStorage.openDatabaseSync(dbName, "1.0");
         database.transaction(function(tx) {
             var cursor = tx.executeSql("
@@ -64,7 +64,7 @@ Item {
             for (var i = 0; i < rows.length; i++) {
 
                 var row = rows.item(i);
-                var station = stationFromUrl(row.feed_url);
+                var station = stationFromUrl(parent, row.feed_url);
                 results.push(station);
             }
 
@@ -128,15 +128,15 @@ Item {
     /**
      * Create new `Station` object from given RSS feed URL.
      */
-    function stationFromUrl(feed_url) {
+    function stationFromUrl(parent, feed_url) {
         console.log("Dao: creating station from url:", feed_url);
-        return stationComponent.createObject(null, {feed_url: feed_url});
+        return stationComponent.createObject(parent, {feed_url: feed_url});
     }
 
     /**
      * Create empty `Station` object without any data.
      */
-    function emptyStation() {
-        return stationComponent.createObject(null);
+    function emptyStation(parent) {
+        return stationComponent.createObject(parent);
     }
 }

@@ -4,14 +4,15 @@ import "../service"
 StationsListModel {
 
     Component.onCompleted: {
+        Dao.subscription.connect(function(feed_url, subscribed) {
+            refresh();
+        });
         refresh();
-        Dao.subscription.connect(refresh);
     }
 
     function refresh() {
-        Dao.subscriptions(function(subscriptions) {
-            stations = subscriptions;
-            updateModel();
+        Dao.subscriptions(this, function(subscriptions) {
+            setStations(subscriptions);
         });
     }
 }

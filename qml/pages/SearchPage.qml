@@ -45,11 +45,11 @@ Page {
 
         acceptDestination: Component {
             StationPage {
-                station: Dao.emptyStation();
+                station: Dao.emptyStation(this);
             }
         }
         onAcceptPendingChanged: {
-            acceptDestinationInstance.station = Dao.stationFromUrl(urlText.text);
+            acceptDestinationInstance.station = Dao.stationFromUrl(acceptDestinationInstance, urlText.text);
         }
     }
 
@@ -74,11 +74,8 @@ Page {
                 // do request to iTunes Store
                 // pass callback
                 var callback = function(results) {
-                    // parse results
-                    // push parsed results into list model
-                    listModel.stations = results.stations;
-                    // refresh page
-                    listModel.updateModel();
+                    // parse results, push parsed results into list model and refresh page
+                    listModel.setStations(results.stations);
                 };
                 ITunes.search(query, callback);
             }

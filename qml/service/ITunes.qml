@@ -55,7 +55,7 @@ Item {
     function parse(result, json) {
         var results = json["results"];
         results.forEach(function(item) {
-            var station = Dao.stationFromUrl(item["feedUrl"]);
+            var station = Dao.stationFromUrl(result, item["feedUrl"]);
             station.title = item["trackName"];
             station.cover = item["artworkUrl100"] || "";
             result.stations.push(station);
