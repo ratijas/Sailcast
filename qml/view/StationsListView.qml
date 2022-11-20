@@ -29,15 +29,13 @@ SilicaListView {
         StationPage {}
     }
 
-    delegate: Component {
-        StationListElement {
-            onClicked: {
-                console.log("i am clicked: " + model.title);
-                var page = stationPage.createObject(view, {
-                    station: view.model.stationAt(index)
-                });
-                pageStack.push(page);
-            }
+    delegate: StationListElement {
+        onClicked: {
+            console.log("i am clicked: " + model.title);
+            var page = stationPage.createObject(view, {
+                station: view.model.stationAt(index)
+            });
+            pageStack.push(page);
         }
     }
     VerticalScrollDecorator {}
