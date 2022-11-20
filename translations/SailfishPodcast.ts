@@ -56,9 +56,12 @@
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Episodes: </source>
-        <translation type="unfinished"></translation>
+    <message numerus="yes">
+        <source>%1 episodes</source>
+        <comment>number of podcast&apos;s episodes</comment>
+        <translation>
+            <numerusform>%1 episode</numerusform>
+        </translation>
     </message>
 </context>
 <context>

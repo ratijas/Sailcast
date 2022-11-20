@@ -56,9 +56,14 @@
         <source>Loading...</source>
         <translation>Загрузка…</translation>
     </message>
-    <message>
-        <source>Episodes: </source>
-        <translation>Выпусков: </translation>
+    <message numerus="yes">
+        <source>%1 episodes</source>
+        <comment>number of podcast&apos;s episodes</comment>
+        <translation>
+            <numerusform>%1 выпуск</numerusform>
+            <numerusform>%1 выпуска</numerusform>
+            <numerusform>%1 выпусков</numerusform>
+        </translation>
     </message>
 </context>
 <context>
